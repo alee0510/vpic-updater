@@ -19,3 +19,9 @@ dev = [
     "requests-mock>=1.12.1",
     "ruff>=0.16.4",
 ]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)https://vpic.nhtsa.dot.gov/Downloads/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><style>body {transition: opacity ease-in 0.2s; } 
+body[unresolved] {opacity: 0; display: block; overflow: hidden; position: relative; } 
+</style>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta name="title" content="vPIC (Vehicle product Information Catalog) by NHTSA">
+
+    <meta name="keywords" content="NHTSA, NHTSA vPIC, vPIC: Product Information Catalog and Vehicle Listing, VIN Decoder, Manufacturer Portal: Online Web-based Submittal Center, MID: Manufacturer Information Database, Modifiers: Adapted Vehicle Modifier Identification Database, API: Application Programming Interface">
+    <meta name="description" content="The NHTSA Product Information Catalog and Vehicle Listing (vPIC) is a consolidated platform that presents data collected within the manufacturer reported data from 49 CFR Parts 551 – 595 for use in a variety of modern tools. NHTSA’s vPIC platform is intended to serve as a centralized source for basic Vehicle Identification Number (VIN) decoding, Manufacturer Information Database (MID), Manufacturer Equipment Plant Identification and associated data.">
+    <meta name="language" content="en">
+
+    <link rel="stylesheet" href="./vpic.nhtsa.dot.gov_files/bootstrap.css">
+    <link rel="stylesheet" href="./vpic.nhtsa.dot.gov_files/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="./vpic.nhtsa.dot.gov_files/datatables.min.css">
+    <link rel="stylesheet" href="./vpic.nhtsa.dot.gov_files/Site.css">
+    <link rel="stylesheet" href="./vpic.nhtsa.dot.gov_files/NhtsaFooter.css">
+    <link rel="stylesheet" href="./vpic.nhtsa.dot.gov_files/newheader.css">
+
+    <script src="./vpic.nhtsa.dot.gov_files/jquery.min.js"></script>
+    <script src="./vpic.nhtsa.dot.gov_files/bootstrap.min.js"></script>
+    <script src="./vpic.nhtsa.dot.gov_files/datatables.min.js"></script>
+
+    <link rel="shortcut icon" href="https://vpic.nhtsa.dot.gov/Images/vpicicon.png" type="image/x-icon">
+
+    <title>NHTSA Product Information Catalog and Vehicle Listing - Home</title>
+
+    <style>
+        html {
+            overflow-x: hidden !important;
+        }
+
+        footer {
+            height: 530px !important;
+        }
+    </style>
+<script type="text/javascript">!function(T,l,y){var S=T.location,k="script",D="instrumentationKey",C="ingestionendpoint",I="disableExceptionTracking",E="ai.device.",b="toLowerCase",w="crossOrigin",N="POST",e="appInsightsSDK",t=y.name||"appInsights";(y.name||T[e])&&(T[e]=t);var n=T[t]||function(d){var g=!1,f=!1,m={initialize:!0,queue:[],sv:"5",version:2,config:d};function v(e,t){var n={},a="Browser";return n[E+"id"]=a[b](),n[E+"type"]=a,n["ai.operation.name"]=S&&S.pathname||"_unknown_",n["ai.internal.sdkVersion"]="javascript:snippet_"+(m.sv||m.version),{time:function(){var e=new Date;function t(e){var t=""+e;return 1===t.length&&(t="0"+t),t}return e.getUTCFullYear()+"-"+t(1+e.getUTCMonth())+"-"+t(e.getUTCDate())+"T"+t(e.getUTCHours())+":"+t(e.getUTCMinutes())+":"+t(e.getUTCSeconds())+"."+((e.getUTCMilliseconds()/1e3).toFixed(3)+"").slice(2,5)+"Z"}(),iKey:e,name:"Microsoft.ApplicationInsights."+e.replace(/-/g,"")+"."+t,sampleRate:100,tags:n,data:{baseData:{ver:2}}}}var h=d.url||y.src;if(h){function a(e){var t,n,a,i,r,o,s,c,u,p,l;g=!0,m.queue=[],f||(f=!0,t=h,s=function(){var e={},t=d.connectionString;if(t)for(var n=t.split(";"),a=0;a<n.length;a++){var i=n[a].split("=");2===i.length&&(e[i[0][b]()]=i[1])}if(!e[C]){var r=e.endpointsuffix,o=r?e.location:null;e[C]="https://"+(o?o+".":"")+"dc."+(r||"services.visualstudio.com")}return e}(),c=s[D]||d[D]||"",u=s[C],p=u?u+"/v2/track":d.endpointUrl,(l=[]).push((n="SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details)",a=t,i=p,(o=(r=v(c,"Exception")).data).baseType="ExceptionData",o.baseData.exceptions=[{typeName:"SDKLoadFailed",message:n.replace(/\./g,"-"),hasFullStack:!1,stack:n+"\nSnippet failed to load ["+a+"] -- Telemetry is disabled\nHelp Link: https://go.microsoft.com/fwlink/?linkid=2128109\nHost: "+(S&&S.pathname||"_unknown_")+"\nEndpoint: "+i,parsedStack:[]}],r)),l.push(function(e,t,n,a){var i=v(c,"Message"),r=i.data;r.baseType="MessageData";var o=r.baseData;return o.message='AI (Internal): 99 message:"'+("SDK LOAD Failure: Failed to load Application Insights SDK script (See stack for details) ("+n+")").replace(/\"/g,"")+'"',o.properties={endpoint:a},i}(0,0,t,p)),function(e,t){if(JSON){var n=T.fetch;if(n&&!y.useXhr)n(t,{method:N,body:JSON.stringify(e),mode:"cors"});else if(XMLHttpRequest){var a=new XMLHttpRequest;a.open(N,t),a.setRequestHeader("Content-type","application/json"),a.send(JSON.stringify(e))}}}(l,p))}function i(e,t){f||setTimeout(function(){!t&&m.core||a()},500)}var e=function(){var n=l.createElement(k);n.src=h;var e=y[w];return!e&&""!==e||"undefined"==n[w]||(n[w]=e),n.onload=i,n.onerror=a,n.onreadystatechange=function(e,t){"loaded"!==n.readyState&&"complete"!==n.readyState||i(0,t)},n}();y.ld<0?l.getElementsByTagName("head")[0].appendChild(e):setTimeout(function(){l.getElementsByTagName(k)[0].parentNode.appendChild(e)},y.ld||0)}try{m.cookie=l.cookie}catch(p){}function t(e){for(;e.length;)!function(t){m[t]=function(){var e=arguments;g||m.queue.push(function(){m[t].apply(m,e)})}}(e.pop())}var n="track",r="TrackPage",o="TrackEvent";t([n+"Event",n+"PageView",n+"Exception",n+"Trace",n+"DependencyData",n+"Metric",n+"PageViewPerformance","start"+r,"stop"+r,"start"+o,"stop"+o,"addTelemetryInitializer","setAuthenticatedUserContext","clearAuthenticatedUserContext","flush"]),m.SeverityLevel={Verbose:0,Information:1,Warning:2,Error:3,Critical:4};var s=(d.extensionConfig||{}).ApplicationInsightsAnalytics||{};if(!0!==d[I]&&!0!==s[I]){var c="onerror";t(["_"+c]);var u=T[c];T[c]=function(e,t,n,a,i){var r=u&&u(e,t,n,a,i);return!0!==r&&m["_"+c]({message:e,url:t,lineNumber:n,columnNumber:a,error:i}),r},d.autoExceptionInstrumented=!0}return m}(y.cfg);function a(){y.onInit&&y.onInit(n)}(T[t]=n).queue&&0===n.queue.length?(n.queue.push(a),n.trackPageView({})):a()}(window,document,{
+src: "https://js.monitor.azure.com/scripts/b/ai.2.min.js", // The SDK URL Source
+crossOrigin: "anonymous", 
+cfg: { // Application Insights Configuration
+    connectionString: 'InstrumentationKey=5697293c-ff81-4d68-858c-40c0ff9539e9;IngestionEndpoint=https://eastus2-3.in.applicationinsights.azure.com/;LiveEndpoint=https://eastus2.livediagnostics.monitor.azure.com/;ApplicationId=29a95f8a-8be0-47f3-8c93-c1a8f05fe780'
+}});</script><script src="./vpic.nhtsa.dot.gov_files/ai.2.min.js" crossorigin="anonymous"></script></head>
+<body data-new-gr-c-s-check-loaded="14.1322.0" data-gr-ext-installed="">
+    <a class="sr-only sr-only-focusable" href="https://vpic.nhtsa.dot.gov/Downloads/#content">Skip to content</a>
+
+<div class="navbar">
+    <!--Top navy-->
+    <div class="navbar-primary--dot-banner">
+        <div class="row">
+            <div class="col-xs-7 topdotlink">
+                <a href="https://www.transportation.gov/" target="_blank" rel="noopener noreferrer">
+                    <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4wLjQsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iMjM2LjA0NXB4IiBoZWlnaHQ9IjIzNi40NzZweCIgdmlld0JveD0iMCAwIDIzNi4wNDUgMjM2LjQ3NiIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMjM2LjA0NSAyMzYuNDc2Ig0KCSB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxwYXRoIGZpbGw9IiNmZmYiIGQ9Ik04MS41MjcsMTA3LjM4NmMxOS45NjEtNC41MzYsMzQuODY3LTIyLjM3NywzNC44NjctNDMuNzFjMC0yNC43NjMtMjAuMDc1LTQ0LjgzOC00NC44MzctNDQuODM4DQoJYy05LjEzNSwwLTE3LjYyOCwyLjczOS0yNC43MTQsNy40M2wtMC4wMDktMC4wMjFDMi4zNTgsNTAuNzQzLDAuMjE4LDEwOS40ODYsMC4yMTgsMTA5LjQ4NmMwLDc5LjkwOSw1NC40NCwxMDYuMzUsNTQuNDQsMTA2LjM1DQoJQzYuODg1LDEyOS44NDIsNzUuMzM2LDEwOS4wNjUsODEuNTI3LDEwNy4zODZ6Ii8+DQo8cGF0aCBmaWxsPSIjZmZmIiBkPSJNMTI4LjE4OCwxNTQuMjg3Yy0xNC4wMjEtMTQuOTE2LTM2Ljk1NS0xOC43MzItNTUuMzQ5LTcuOTI4Yy0yMS4zNTMsMTIuNTQyLTI4LjQ5Niw0MC4wMTgtMTUuOTU1LDYxLjM3DQoJYzQuNjI2LDcuODc3LDExLjI4OSwxMy44MTIsMTguOTIzLDE3LjU0N2wtMC4wMTQsMC4wMTljNDMuNjQ3LDI1Ljk0Miw5NS4zODMtMS45NjIsOTUuMzgzLTEuOTYyDQoJYzY4LjkwMy00MC40NzEsNjQuMTMxLTEwMC44MDUsNjQuMTMxLTEwMC44MDVDMTg1LjM1NCwyMDcuMjc0LDEzMi43NzEsMTU4Ljc3MywxMjguMTg4LDE1NC4yODd6Ii8+DQo8cGF0aCBmaWxsPSIjZmZmIiBkPSJNMTQ0LjIyMyw5MC45MzJjLTYuMDQ2LDE5LjU1OSwxLjk1OSw0MS4zODMsMjAuNDM4LDUyLjA0NGMyMS40NSwxMi4zNzUsNDguODcsNS4wMTksNjEuMjQzLTE2LjQzDQoJYzQuNTY2LTcuOTEzLDYuNDM4LTE2LjYzOCw1LjkxNS0yNS4xMjFsMC4wMjQsMC4wMDNjMS4wMDYtNTAuNzY1LTQ4LjgwNy04MS45NzQtNDguODA3LTgxLjk3NA0KCUMxMTMuODItMjAuNDc5LDYzLjcxLDEzLjQ2NSw2My43MSwxMy40NjVDMTYyLjA3MiwxNS4wNTYsMTQ1Ljg2Miw4NC43MywxNDQuMjIzLDkwLjkzMnoiLz4NCjwvc3ZnPg0K">
+                    United States Department of Transportation
+                </a>
+            </div>
+            <div class="col-xs-4 topnav-report_problem_container bottomdotlink">
+                <div class="row" style="padding-top:6px;">
+                    <div class="col-md-5 top-nav-search-container">
+                        <div class="topnav-search-form-container">
+                            <form id="nhtsaForm">
+                                <div class="input-group">
+                                    <input type="text" id="userQuery" class="form-control" placeholder="Search">
+
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-primary" type="submit" id="nhtsaSearchBtn">
+                                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                        </button>
+                                    </span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <a href="https://www-odi.nhtsa.dot.gov/VehicleComplaint/" class="btn btn-transparent" target="_blank" rel="noopener noreferrer">Report a Problem</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--Top navy-->
+    <!--bottom light-->
+    <nav class="navbar-primary">
+        <!--New DOT logo-->
+        <div class="navbar-header">
+            <!--<button role="button" data-toggle="modal" data-target=".site-search-modal" class="navbar-primary-search">
+            <img class="search-mobile-button search-nav-png" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAQCAYAAAAS7Y8mAAABQElEQVQ4T6WTgS0EYRCFv1cBKkAFqMBdBU4FqAAVUAIVoAKnAlTgStABKhh5m1nZu51dFybZZJP//7+ZefNGjERETIAjYB/4BF6AB0n+Hw1VpxGxCTwCBq+GoZeS7sfIPXBCn7NKv33NSncy0XYCz8bgFfgauAK+gJkkt99EJr0BTlKaA0nvVeUV2K1uZLuGLEXCF4ArtyS9O36wBI4ID+ktSbtD1USEYeeWSVI1hx7Yl6wvksrBpiStXGuD7YaPrNj6ueVeRMQ8bXgr6WJdjT2sQztB0rTQ+Kcr4FiSk/SiGl73oZN4QIscmpfF+rozx2BXQwtyCtyNLUCe2UHTSrKxAblyV7fXSWBvu/VZWtJHJXwQ3MIiwhvnz05pliVt6X/7vYT/Ch6So4JL2mrv/xlcVP4kyRI18S9wBz5ZXe1vHNeCEXeSl5UAAAAASUVORK5CYII=" alt="Search">
+            </button>-->
+            <button type="button" data-toggle="collapse" data-target="#navbar-links" aria-expanded="false" class="navbar-toggle collapsed">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="https://www.nhtsa.gov/" class="navbar-brand" target="_blank" rel="noopener noreferrer">
+                <img alt="National Highway Traffic Safety Administration" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IS0tR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyMC4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApLS0+PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgd2lkdGg9IjU2NS4xcHgiIGhlaWdodD0iMTMyLjZweCIgdmlld0JveD0iMCAwIDU2NS4xIDEzMi42IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1NjUuMSAxMzIuNjsiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+LnN0MHtmaWxsOiNGRkZGRkY7fTwvc3R5bGU+PGc+PHBhdGggY2xhc3M9InN0MCIgZD0iTTE0LjMsMzEuNGMtMC42LDAtMSwwLjUtMSwxYzAuMiw0LjIsMS45LDguMSw0LjYsMTFjMC40LDAuNSwxLjIsMC40LDEuNi0wLjFsMi45LTQuM2wtMi44LTcuN0gxNC4zeiIvPjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0zNS43LDQxLjdoLTkuMWwtMy4yLDQuN2MtMC4zLDAuNS0wLjIsMS4yLDAuNCwxLjVjMi4yLDEsNC43LDEuNiw3LjMsMS42YzIuNiwwLDUuMS0wLjYsNy4zLTEuNgoJCWMwLjYtMC4zLDAuNy0xLDAuNC0xLjVMMzUuNyw0MS43eiIvPjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik01OC4yLDAuNEg0Yy0yLjIsMC00LDEuOC00LDR2NTQuMmMwLDIuMiwxLjgsNCw0LDRoNTQuMmMyLjIsMCw0LTEuOCw0LTRWNC4zQzYyLjIsMi4yLDYwLjQsMC40LDU4LjIsMC40egoJCSBNNDYuMiw0OC42Yy0xLjIsMS4xLTIuNiwyLjEtNCwyLjljLTMuMywxLjktNy4xLDIuOS0xMS4xLDIuOWMtNCwwLTcuOC0xLjEtMTEuMS0yLjljLTEuNC0wLjgtMi44LTEuOC00LTIuOQoJCWMtNC43LTQuMi03LjYtMTAuMi03LjYtMTdjMC0wLjEsMC0wLjEsMC0wLjJjMC0xLjcsMC4yLTMuMywwLjYtNC45QzExLjIsMTYuNCwyMC4zLDguOCwzMS4xLDguOGMxMC44LDAsMTkuOSw3LjYsMjIuMiwxNy43CgkJYzAuNCwxLjYsMC42LDMuMiwwLjYsNC45YzAsMC4xLDAsMC4xLDAsMC4yQzUzLjksMzguMyw1MC45LDQ0LjQsNDYuMiw0OC42eiIvPjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik00Ny45LDMxLjRoLTUuM2wtMi44LDcuN2wyLjksNC4zYzAuNCwwLjUsMS4xLDAuNiwxLjYsMC4xYzIuNy0yLjksNC40LTYuOCw0LjYtMTEuMQoJCUM0OSwzMS45LDQ4LjUsMzEuNCw0Ny45LDMxLjR6Ii8+PHBhdGggY2xhc3M9InN0MCIgZD0iTTE1LjQsMjYuNWgzMS40YzAuNywwLDEuMi0wLjcsMC45LTEuNGMtMi42LTYuNy05LjEtMTEuNC0xNi42LTExLjRjLTcuNiwwLTE0LDQuNy0xNi42LDExLjQKCQlDMTQuMiwyNS44LDE0LjcsMjYuNSwxNS40LDI2LjV6Ii8+PHBvbHlnb24gY2xhc3M9InN0MCIgcG9pbnRzPSIxMDMuOCw5OS4xIDEwMi44LDk1LjggMTAxLjIsOTEgOTkuNyw5NS44IDk4LjYsOTkuMSA5NS4xLDk5LjEgOTAuMSw5OS4xIDk0LjIsMTAyIDk3LDEwNC4xIAoJCTk1LjksMTA3LjQgOTQuNCwxMTIuMSA5OC40LDEwOS4yIDEwMS4yLDEwNy4xIDEwNCwxMDkuMiAxMDguMSwxMTIuMSAxMDYuNSwxMDcuNCAxMDUuNCwxMDQuMSAxMDguMiwxMDIgMTEyLjMsOTkuMSAxMDcuMyw5OS4xIAkKCQkiLz48cGF0aCBjbGFzcz0ic3QwIiBkPSJNMTI4LjMsNzAuNEg3NC4xYy0yLjIsMC00LDEuOC00LDR2NTQuMmMwLDIuMiwxLjgsNCw0LDRoNTQuMmMyLjIsMCw0LTEuOCw0LTRWNzQuNAoJCUMxMzIuMyw3Mi4yLDEzMC41LDcwLjQsMTI4LjMsNzAuNHogTTEyNi4xLDk0LjlsLTE1LDEwLjlsNS43LDE3LjdjMC4xLDAuMi0wLjEsMC41LTAuMywwLjVjLTAuMSwwLTAuMSwwLTAuMi0wLjFsLTE1LTEwLjkKCQlsLTE1LDEwLjljLTAuMSwwLTAuMSwwLjEtMC4yLDAuMWMtMC4yLDAtMC40LTAuMi0wLjMtMC41bDUuNy0xNy43bC0xNS0xMC45Yy0wLjMtMC4yLTAuMS0wLjYsMC4yLTAuNmgxOC42bDUuNy0xNy43CgkJYzAuMS0wLjIsMC4yLTAuMiwwLjMtMC4yYzAuMSwwLDAuMywwLjEsMC4zLDAuMmw1LjcsMTcuN2gxOC42QzEyNi4yLDk0LjMsMTI2LjQsOTQuNywxMjYuMSw5NC45eiIvPjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik03NCw2Mi42aDU0LjJjMi4yLDAsNC0xLjgsNC00VjQuNGMwLTIuMi0xLjgtNC00LTRINzRjLTIuMiwwLTQsMS44LTQsNHY1NC4yQzcwLjEsNjAuOCw3MS45LDYyLjYsNzQsNjIuNnoKCQkgTTEwNy41LDU0LjZMMTAwLjQsNDRsLTAuMy04YzAuMS0wLjMsMC4yLTAuOCwwLjQtMS4zTDExMyw1NC42SDEwNy41eiBNMTAzLjgsNy44YzIuNywwLDQuOSwyLjIsNC45LDQuOWMwLDIuNy0yLjIsNC45LTQuOSw0LjkKCQljLTAuNiwwLTEuMS0wLjEtMS42LTAuM2MtMC40LTAuMi0wLjktMC40LTEuMi0wLjdjLTEuMi0wLjktMi0yLjMtMi0zLjlDOTksMTAsMTAxLjEsNy44LDEwMy44LDcuOHogTTg2LDI4LjgKCQljMS4zLTEuNywyLjgtMy4zLDQuMy00LjdjMC45LTAuOSwzLTIuOSw0LjMtNGMyLjEtMS44LDUuNS0yLjcsNy44LTAuOWMwLjksMC44LDEuNSwxLjgsMiwyLjljMC42LDEuNSwxLjQsMy40LDIsNC45CgkJYzAsMCwwLDAuMSwwLjEsMC4xYzAuMSwwLjEsMC4yLDAuMiwwLjMsMC4zYzAsMCwwLjIsMC4xLDAuMiwwLjFsNywzLjNsLTEuOCw0LjRjMCwwLTEuOS0wLjctMi4xLTAuOGMtMS40LTAuNi0xLjYtMC41LTMtMS4xCgkJYy0wLjgtMC4zLTAuNy0wLjQtMS41LTAuN2MtMC4zLTAuMS0wLjUtMC4zLTAuOC0wLjNjLTAuOC0wLjMtMS44LTEtMy00LjFjMCwwLjEtMi43LDcuNy0yLjcsNy43YzAsMSwwLjEsNC4yLDAuMyw2LjMKCQljMCwwLjYsMC4xLDEuMiwwLjEsMS41YzAuMSwxLjktMC41LDIuNi0xLjgsMy44Yy0yLjYsMi40LTcuNCw3LjItNy40LDcuMmwtMy44LTMuMmw3LjMtNy44YzAsMC0wLjgtNC43LTAuOS01LjIKCQljLTAuMy0yLjEtMC42LTIuOS0wLjQtNC40YzAtMC4xLDAtMC4zLDAuMS0wLjRsMS41LTYuM2MtMC42LDAuNS0xLjQsMS0yLjMsMS45Yy0xLjMsMS4yLTQuNyw1LjctNC43LDUuN2wtMy42LTIuNAoJCUM4My41LDMyLjIsODUuNSwyOS41LDg2LDI4Ljh6Ii8+PHBhdGggY2xhc3M9InN0MCIgZD0iTTU4LjIsNzAuNEg0Yy0yLjIsMC00LDEuOC00LDR2NTQuMmMwLDIuMiwxLjgsNCw0LDRoNTQuMmMyLjIsMCw0LTEuOCw0LTRWNzQuNEM2Mi4yLDcyLjIsNjAuNCw3MC40LDU4LjIsNzAuNAoJCXogTTguMSwxMTkuMmwxNC41LTM1LjRoMS42bC0xMS44LDM1LjRIOC4xeiBNMzMuMywxMTkuMmwtMC4xLTIuOWgtNC4zbC0wLjEsMi45SDE2LjNsOS4zLTM1LjRoNC42bC0wLjEsMi45SDMybC0wLjEtMi45aDQuNgoJCWw5LjMsMzUuNEgzMy4zeiBNNDkuOCwxMTkuMkwzOCw4My44aDEuNmwxNC41LDM1LjRINDkuOHoiLz48cG9seWdvbiBjbGFzcz0ic3QwIiBwb2ludHM9IjMyLjIsOTEuMiAyOS45LDkxLjIgMjkuNiw5OS4zIDMyLjUsOTkuMyAJIi8+PHBvbHlnb24gY2xhc3M9InN0MCIgcG9pbnRzPSIyOS40LDEwMy43IDI5LjEsMTExLjkgMzMsMTExLjkgMzIuNywxMDMuNyAJIi8+PHBvbHlnb24gY2xhc3M9InN0MCIgcG9pbnRzPSIxNzYsNTEgMjIyLjQsOTYuMyAyMjIuNSw5Ni41IDIzMS45LDk2LjUgMjMxLjksMS41IDIwNi4zLDEuNSAyMDYuMyw0Ni43IDE1OS42LDEuMSAxNTAuMiwxLjEgCgkJMTUwLjIsOTYuNCAxNzYsOTYuNCAJIi8+PHBvbHlnb24gY2xhc3M9InN0MCIgcG9pbnRzPSIyNjQuMiw1OC43IDI5Miw1OC43IDI5Miw5Ni40IDMxNy42LDk2LjQgMzE3LjYsMS41IDI5MiwxLjUgMjkyLDM1LjYgMjY0LjIsMzUuNiAyNjQuMiwxLjUgMjM4LjYsMS41IAoJCTIzOC42LDk2LjQgMjY0LjIsOTYuNCAJIi8+PHBvbHlnb24gY2xhc3M9InN0MCIgcG9pbnRzPSIzNDYuMiw5Ni40IDM3MC45LDk2LjQgMzcwLjksMjQgMzkzLjgsMjQgMzkzLjgsMS41IDMyMy4xLDEuNSAzMjMuMSwyNCAzNDYuMiwyNCAJIi8+PHBhdGggY2xhc3M9InN0MCIgZD0iTTQwNy42LDkwLjdjNy4yLDUuMSwxNi43LDcuNiwyNi4yLDcuNmM5LjYsMCwxOS4zLTIuNSwyNi41LTcuNmM3LjMtNS4xLDEyLjItMTIuNywxMi4yLTIyLjgKCQljMC0xMS45LTQuNy0xOC42LTExLjctMjIuNGMtNy0zLjktMTYuMy00LjktMjUuNi02Yy0zLTAuMy01LjktMC43LTguMi0xLjRjLTIuMy0wLjctNC4xLTEuNy01LjEtMy4xYy0wLjctMS0xLjEtMi4xLTEuMS0zLjYKCQljMC0wLjIsMC0wLjUsMC0wLjdjMC4yLTIuNiwxLjgtNC42LDQuMy02YzIuNC0xLjQsNS43LTIuMiw4LjgtMi4yYzMuMSwwLDYuMSwwLjcsOC4yLDIuMWMyLjIsMS40LDMuNiwzLjUsMy42LDYuM3YwLjVoMjMuOGwwLTAuNQoJCWwwLTAuNWMwLTEwLjEtNC42LTE3LjgtMTEuNC0yMi44Yy02LjgtNS4xLTE1LjktNy42LTI1LTcuNmMtOSwwLTE4LDIuNS0yNC44LDcuNWMtNi44LDUtMTEuNCwxMi42LTExLjQsMjIuN2MwLDAuMiwwLDAuNCwwLDAuN3YwCgkJYzAuMSwxMC4zLDMuNiwxNy4zLDkuNywyMS45YzYuMSw0LjYsMTQuNiw2LjcsMjQuOCw3LjRoMGwwLDBjMy41LDAuMiw2LjgsMC41LDkuNSwxLjFjMi43LDAuNiw0LjgsMS41LDUuOSwyLjkKCQljMC44LDAuOSwxLjIsMi4xLDEuMiwzLjZjMCwyLjUtMS42LDQuMy00LjIsNS43Yy0yLjYsMS4zLTYuMSwyLTkuNywyYy0zLjYsMC03LjMtMC43LTkuOS0yLjFjLTIuNy0xLjQtNC40LTMuNy00LjQtNi41di0wLjNoLTI0LjIKCQlsMCwwLjVsMCwwLjRDMzk1LjYsNzcuOSw0MDAuNCw4NS43LDQwNy42LDkwLjd6Ii8+PHBhdGggY2xhc3M9InN0MCIgZD0iTTQ2OS4zLDk1LjhoMjMuNGw1LjUtMTEuOGgzN2w1LjUsMTEuOGgyMy40di0zLjVMNTIxLjgsMC45aC0xMC4zbC00Mi4yLDkxLjVWOTUuOHogTTUxNi42LDM5LjZsMC41LDEuMQoJCUw1MjcuNCw2M2gtMjEuMkw1MTYuNiwzOS42eiIvPjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xODQuOSwxMjcuNWMwLDYuNiw5LjgsNi42LDkuOCwwQzE5NC43LDEyMC45LDE4NC45LDEyMC45LDE4NC45LDEyNy41eiBNMTg3LjQsMTI3LjVjMC0zLjQsNC44LTMuNCw0LjgsMAoJCUMxOTIuMiwxMzEsMTg3LjQsMTMxLDE4Ny40LDEyNy41eiIvPjxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMjAyLjgsMTI3LjQgMTk4LDEyMi43IDE5Ny4xLDEyMi43IDE5Ny4xLDEzMi4zIDE5OS42LDEzMi4zIDE5OS42LDEyNy42IDIwNC41LDEzMi4zIDIwNS4zLDEzMi4zIAoJCTIwNS4zLDEyMi43IDIwMi44LDEyMi43IAkiLz48cG9seWdvbiBjbGFzcz0ic3QwIiBwb2ludHM9IjE1NS45LDEyNy40IDE1MSwxMjIuNyAxNTAuMiwxMjIuNyAxNTAuMiwxMzIuMyAxNTIuNywxMzIuMyAxNTIuNywxMjcuNiAxNTcuNSwxMzIuMyAxNTguNCwxMzIuMyAKCQkxNTguNCwxMjIuNyAxNTUuOSwxMjIuNyAJIi8+PHBhdGggY2xhc3M9InN0MCIgZD0iTTE2NC41LDEyMi42bC00LjMsOS4zdjAuNGgyLjRsMC42LTEuMmgzLjhsMC42LDEuMmgyLjR2LTAuNGwtNC4zLTkuM0gxNjQuNXogTTE2My45LDEyOWwxLjEtMi41bDEuMSwyLjUKCQlIMTYzLjl6Ii8+PHBvbHlnb24gY2xhc3M9InN0MCIgcG9pbnRzPSIxNzAuMSwxMjQuOSAxNzIuNCwxMjQuOSAxNzIuNCwxMzIuMyAxNzQuOSwxMzIuMyAxNzQuOSwxMjQuOSAxNzcuMiwxMjQuOSAxNzcuMiwxMjIuNyAxNzAuMSwxMjIuNyAJCgkJIi8+PHBvbHlnb24gY2xhc3M9InN0MCIgcG9pbnRzPSIxODIuMSwxMjQuOCAxODMuMiwxMjQuOCAxODMuMiwxMjIuNyAxNzguNiwxMjIuNyAxNzguNiwxMjQuOCAxNzkuNywxMjQuOCAxNzkuNywxMzAuMSAxNzguNSwxMzAuMSAKCQkxNzguNSwxMzIuMyAxODMuMywxMzIuMyAxODMuMywxMzAuMSAxODIuMSwxMzAuMSAJIi8+PHBhdGggY2xhc3M9InN0MCIgZD0iTTIxMS40LDEyMi42bC00LjMsOS4zdjAuNGgyLjRsMC42LTEuMmgzLjhsMC42LDEuMmgyLjR2LTAuNGwtNC4zLTkuM0gyMTEuNHogTTIxMC45LDEyOWwxLjEtMi41bDEuMSwyLjUKCQlIMjEwLjl6Ii8+PHBhdGggY2xhc3M9InN0MCIgZD0iTTM2My43LDEzMC4xYy0xLjQsMC0yLjQtMS4yLTIuNC0yLjdjMC0xLjYsMC45LTIuNywyLjQtMi43YzEsMCwxLjgsMC40LDIuMSwxLjRoMi40Yy0wLjQtMi42LTIuNS0zLjYtNC41LTMuNgoJCWMtMi40LDAtNC45LDEuNi00LjksNC45YzAsMy4zLDIuNSw0LjksNC45LDQuOWMyLDAsNC4yLTEuMSw0LjUtMy44aC0yLjRDMzY1LjUsMTI5LjYsMzY0LjcsMTMwLjEsMzYzLjcsMTMwLjF6Ii8+PHBhdGggY2xhc3M9InN0MCIgZD0iTTMxOS42LDEyMi43aC00LjJ2OS42aDIuNHYtMi44aDEuM2wxLjYsMi44aDIuN3YtMC40bC0xLjktM0MzMjQuMSwxMjcuMiwzMjMuNCwxMjIuNywzMTkuNiwxMjIuN3oKCQkgTTMxOS42LDEyNy4zaC0xLjh2LTIuNGMwLjYsMCwxLjIsMCwxLjgsMEMzMjEsMTI0LjksMzIxLDEyNy4zLDMxOS42LDEyNy4zeiIvPjxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMzA2LjMsMTI0LjkgMzA4LjYsMTI0LjkgMzA4LjYsMTMyLjMgMzExLDEzMi4zIDMxMSwxMjQuOSAzMTMuNCwxMjQuOSAzMTMuNCwxMjIuNyAzMDYuMywxMjIuNyAJIi8+PHBhdGggY2xhc3M9InN0MCIgZD0iTTMyOS4xLDEyMi42bC00LjMsOS4zdjAuNGgyLjRsMC42LTEuMmgzLjhsMC42LDEuMmgyLjR2LTAuNGwtNC4zLTkuM0gzMjkuMXogTTMyOC41LDEyOWwxLjEtMi41bDEuMSwyLjUKCQlIMzI4LjV6Ii8+PHBvbHlnb24gY2xhc3M9InN0MCIgcG9pbnRzPSIyOTYuNiwxMjUuOSAyOTYuNSwxMjUuOSAyOTQuOCwxMjIuNyAyOTIuMiwxMjIuNyAyOTIuMiwxMjMuMSAyOTUuNCwxMjguMiAyOTUuNCwxMzIuMyAyOTcuOCwxMzIuMyAKCQkyOTcuOCwxMjguMiAzMDEsMTIzLjEgMzAxLDEyMi43IDI5OC40LDEyMi43IAkiLz48cG9seWdvbiBjbGFzcz0ic3QwIiBwb2ludHM9IjM1NS45LDEyNC44IDM1Ny4xLDEyNC44IDM1Ny4xLDEyMi43IDM1Mi40LDEyMi43IDM1Mi40LDEyNC44IDM1My41LDEyNC44IDM1My41LDEzMC4xIDM1Mi4zLDEzMC4xIAoJCTM1Mi4zLDEzMi4zIDM1Ny4yLDEzMi4zIDM1Ny4yLDEzMC4xIDM1NS45LDEzMC4xIAkiLz48cG9seWdvbiBjbGFzcz0ic3QwIiBwb2ludHM9IjM0NC43LDEzMi4zIDM0Ny4yLDEzMi4zIDM0Ny4yLDEyOS4yIDM1MC4zLDEyOS4yIDM1MC4zLDEyNyAzNDcuMiwxMjcgMzQ3LjIsMTI0LjkgMzUwLjcsMTI0LjkgCgkJMzUwLjcsMTIyLjcgMzQ0LjcsMTIyLjcgCSIvPjxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMzM2LjMsMTMyLjMgMzM4LjgsMTMyLjMgMzM4LjgsMTI5LjIgMzQxLjksMTI5LjIgMzQxLjksMTI3IDMzOC44LDEyNyAzMzguOCwxMjQuOSAzNDIuMywxMjQuOSAKCQkzNDIuMywxMjIuNyAzMzYuMywxMjIuNyAJIi8+PHBhdGggY2xhc3M9InN0MCIgZD0iTTI1Mi42LDEyNi44djIuMWgyYy0wLjQsMC45LTEuMSwxLjItMi4xLDEuMmMtMS41LDAtMi40LTEtMi40LTIuNmMwLTEuNSwwLjgtMi43LDIuNC0yLjdjMSwwLDEuNiwwLjMsMiwxLjEKCQloMi40Yy0wLjUtMi40LTIuNS0zLjQtNC40LTMuNGMtMi40LDAtNC45LDEuNi00LjksNC45YzAsMy4zLDIuNSw0LjksNC45LDQuOWMxLjgsMCwzLjYtMC44LDQuMy0yLjhjMC4zLTAuOSwwLjMtMS44LDAuMy0yLjhIMjUyLjYKCQl6Ii8+PHBhdGggY2xhc3M9InN0MCIgZD0iTTI4Ni44LDEyMi42bC00LjMsOS4zdjAuNGgyLjRsMC42LTEuMmgzLjhsMC42LDEuMmgyLjR2LTAuNGwtNC4zLTkuM0gyODYuOHogTTI4Ni4zLDEyOWwxLjEtMi41bDEuMSwyLjUKCQlIMjg2LjN6Ii8+PHBvbHlnb24gY2xhc3M9InN0MCIgcG9pbnRzPSIyNDQuOSwxMjQuOCAyNDYsMTI0LjggMjQ2LDEyMi43IDI0MS40LDEyMi43IDI0MS40LDEyNC44IDI0Mi41LDEyNC44IDI0Mi41LDEzMC4xIDI0MS4zLDEzMC4xIAoJCTI0MS4zLDEzMi4zIDI0Ni4xLDEzMi4zIDI0Ni4xLDEzMC4xIDI0NC45LDEzMC4xIAkiLz48cG9seWdvbiBjbGFzcz0ic3QwIiBwb2ludHM9IjIzNi42LDEyNi4yIDIzMy42LDEyNi4yIDIzMy42LDEyMi43IDIzMS4xLDEyMi43IDIzMS4xLDEzMi4zIDIzMy42LDEzMi4zIDIzMy42LDEyOC40IDIzNi42LDEyOC40IAoJCTIzNi42LDEzMi4zIDIzOS4xLDEzMi4zIDIzOS4xLDEyMi43IDIzNi42LDEyMi43IAkiLz48cG9seWdvbiBjbGFzcz0ic3QwIiBwb2ludHM9IjIyMS4xLDEyMi43IDIxOC42LDEyMi43IDIxOC42LDEzMi4zIDIyNC41LDEzMi4zIDIyNC41LDEzMC4xIDIyMS4xLDEzMC4xIAkiLz48cG9seWdvbiBjbGFzcz0ic3QwIiBwb2ludHM9IjI3OC41LDEyNi4zIDI3OC4xLDEyNy45IDI3OCwxMjcuOSAyNzYuNCwxMjIuOCAyNzUuNCwxMjIuOCAyNzMuOCwxMjcuOSAyNzMuNywxMjcuOSAyNzMuMywxMjYuMyAKCQkyNzIuMSwxMjIuNyAyNjkuNiwxMjIuNyAyNjkuNiwxMjMuMSAyNzMsMTMyLjQgMjc0LjMsMTMyLjQgMjc1LjgsMTI3LjggMjc1LjksMTI3LjggMjc3LjQsMTMyLjQgMjc4LjgsMTMyLjQgMjgyLjIsMTIzLjEgCgkJMjgyLjIsMTIyLjcgMjc5LjcsMTIyLjcgCSIvPjxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMjY1LjEsMTI2LjIgMjYyLjIsMTI2LjIgMjYyLjIsMTIyLjcgMjU5LjYsMTIyLjcgMjU5LjYsMTMyLjMgMjYyLjIsMTMyLjMgMjYyLjIsMTI4LjQgMjY1LjEsMTI4LjQgCgkJMjY1LjEsMTMyLjMgMjY3LjYsMTMyLjMgMjY3LjYsMTIyLjcgMjY1LjEsMTIyLjcgCSIvPjxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iNDYwLjMsMTI2LjggNDU2LjYsMTIyLjYgNDU1LjcsMTIyLjYgNDU1LjcsMTMyLjIgNDU4LjIsMTMyLjIgNDU4LjIsMTI4IDQ2MC4yLDEzMC4xIDQ2MC41LDEzMC4xIAoJCTQ2Mi41LDEyOCA0NjIuNSwxMzIuMiA0NjUsMTMyLjIgNDY1LDEyMi42IDQ2NC4xLDEyMi42IAkiLz48cG9seWdvbiBjbGFzcz0ic3QwIiBwb2ludHM9IjUwMC4xLDEyNC45IDUwMi41LDEyNC45IDUwMi41LDEzMi4yIDUwNC45LDEzMi4yIDUwNC45LDEyNC45IDUwNy4yLDEyNC45IDUwNy4yLDEyMi43IDUwMC4xLDEyMi43IAkKCQkiLz48cGF0aCBjbGFzcz0ic3QwIiBkPSJNNTEzLjUsMTIyLjdoLTQuMnY5LjZoMi40di0yLjhoMS4zbDEuNiwyLjhoMi43di0wLjRsLTEuOS0zQzUxNy45LDEyNy4yLDUxNy4yLDEyMi43LDUxMy41LDEyMi43egoJCSBNNTEzLjUsMTI3LjNoLTEuOHYtMi40YzAuNiwwLDEuMiwwLDEuOCwwQzUxNC45LDEyNC45LDUxNC44LDEyNy4zLDUxMy41LDEyNy4zeiIvPjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik01MjIuOSwxMjIuNmwtNC4zLDkuM3YwLjRoMi40bDAuNi0xLjJoMy44bDAuNiwxLjJoMi40di0wLjRsLTQuMy05LjNINTIyLjl6IE01MjIuNCwxMjlsMS4xLTIuNWwxLjEsMi41CgkJSDUyMi40eiIvPjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik00OTQuOSwxMjYuNmMtMC45LTAuMS0xLjYtMC4yLTEuNS0xYzAuMS0xLjEsMi43LTEuMiwyLjcsMGgyLjNjMC4xLTQuMS03LjQtNC4xLTcuMywwYzAsMi4xLDEuNCwyLjgsMy41LDIuOQoJCWMxLDAuMSwxLjgsMC4yLDEuOCwwLjljMCwxLjEtMywxLjEtMy0wLjFINDkxYy0wLjEsNC4yLDcuNyw0LjEsNy43LDAuMUM0OTguNywxMjcuMSw0OTYuOCwxMjYuOCw0OTQuOSwxMjYuNnoiLz48cG9seWdvbiBjbGFzcz0ic3QwIiBwb2ludHM9IjU2MS4zLDEyNy40IDU1Ni41LDEyMi42IDU1NS42LDEyMi42IDU1NS42LDEzMi4yIDU1OC4xLDEzMi4yIDU1OC4xLDEyNy41IDU2Mi45LDEzMi4zIDU2My44LDEzMi4zIAoJCTU2My44LDEyMi43IDU2MS4zLDEyMi43IAkiLz48cG9seWdvbiBjbGFzcz0ic3QwIiBwb2ludHM9IjQ4OC4zLDEyNC44IDQ4OS40LDEyNC44IDQ4OS40LDEyMi43IDQ4NC43LDEyMi43IDQ4NC43LDEyNC44IDQ4NS44LDEyNC44IDQ4NS44LDEzMC4xIDQ4NC42LDEzMC4xIAoJCTQ4NC42LDEzMi4yIDQ4OS41LDEzMi4yIDQ4OS41LDEzMC4xIDQ4OC4zLDEzMC4xIAkiLz48cGF0aCBjbGFzcz0ic3QwIiBkPSJNNTQzLjQsMTI3LjVjMCw2LjYsOS44LDYuNiw5LjgsMEM1NTMuMiwxMjAuOSw1NDMuNCwxMjAuOSw1NDMuNCwxMjcuNXogTTU0NS45LDEyNy41YzAtMy40LDQuOC0zLjQsNC44LDAKCQlDNTUwLjcsMTMwLjksNTQ1LjksMTMwLjksNTQ1LjksMTI3LjV6Ii8+PHBvbHlnb24gY2xhc3M9InN0MCIgcG9pbnRzPSI1MjguNSwxMjQuOSA1MzAuOSwxMjQuOSA1MzAuOSwxMzIuMiA1MzMuMywxMzIuMiA1MzMuMywxMjQuOSA1MzUuNywxMjQuOSA1MzUuNywxMjIuNyA1MjguNSwxMjIuNyAJCgkJIi8+PHBvbHlnb24gY2xhc3M9InN0MCIgcG9pbnRzPSI1NDAuNiwxMjQuOCA1NDEuNywxMjQuOCA1NDEuNywxMjIuNyA1MzcsMTIyLjcgNTM3LDEyNC44IDUzOC4yLDEyNC44IDUzOC4yLDEzMC4xIDUzNi45LDEzMC4xIAoJCTUzNi45LDEzMi4yIDU0MS44LDEzMi4yIDU0MS44LDEzMC4xIDU0MC42LDEzMC4xIAkiLz48cG9seWdvbiBjbGFzcz0ic3QwIiBwb2ludHM9IjQyNC4xLDEyNS45IDQyNCwxMjUuOSA0MjIuMywxMjIuNyA0MTkuNiwxMjIuNyA0MTkuNiwxMjMgNDIyLjgsMTI4LjIgNDIyLjgsMTMyLjIgNDI1LjMsMTMyLjIgCgkJNDI1LjMsMTI4LjIgNDI4LjUsMTIzIDQyOC41LDEyMi43IDQyNS44LDEyMi43IAkiLz48cG9seWdvbiBjbGFzcz0ic3QwIiBwb2ludHM9IjQxMS4yLDEyNC45IDQxMy42LDEyNC45IDQxMy42LDEzMi4yIDQxNiwxMzIuMiA0MTYsMTI0LjkgNDE4LjMsMTI0LjkgNDE4LjMsMTIyLjcgNDExLjIsMTIyLjcgCSIvPjxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMzk1LDEzMi4yIDM5Ny41LDEzMi4yIDM5Ny41LDEyOS4xIDQwMC42LDEyOS4xIDQwMC42LDEyNyAzOTcuNSwxMjcgMzk3LjUsMTI0LjkgNDAxLDEyNC45IDQwMSwxMjIuNyAKCQkzOTUsMTIyLjcgCSIvPjxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iNDA1LjgsMTI4LjQgNDA5LjEsMTI4LjQgNDA5LjEsMTI2LjIgNDA1LjgsMTI2LjIgNDA1LjgsMTI0LjkgNDA5LjQsMTI0LjkgNDA5LjQsMTIyLjcgNDAzLjQsMTIyLjcgCgkJNDAzLjQsMTMyLjIgNDA5LjUsMTMyLjIgNDA5LjUsMTMwLjEgNDA1LjgsMTMwLjEgCSIvPjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0zODcuOCwxMjIuNmwtNC4zLDkuM3YwLjRoMi40bDAuNi0xLjJoMy44bDAuNiwxLjJoMi40di0wLjRsLTQuMy05LjNIMzg3Ljh6IE0zODcuMywxMjlsMS4xLTIuNWwxLjEsMi41CgkJSDM4Ny4zeiIvPjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik00NDguNiwxMjIuN0g0NDV2OS42aDMuNkM0NTQuOCwxMzIuMiw0NTQuOCwxMjIuNyw0NDguNiwxMjIuN3ogTTQ0OC42LDEzMGgtMS4ydi01LjFoMS4yCgkJQzQ1MS42LDEyNC45LDQ1MS42LDEzMCw0NDguNiwxMzB6Ii8+PHBhdGggY2xhc3M9InN0MCIgZD0iTTM3OC41LDEyNi42Yy0wLjktMC4xLTEuNi0wLjItMS41LTFjMC4xLTEuMSwyLjctMS4yLDIuNywwaDIuM2MwLjEtNC4xLTcuNC00LjEtNy4zLDBjMCwyLjEsMS40LDIuOCwzLjUsMi45CgkJYzEsMC4xLDEuNywwLjIsMS43LDAuOWMwLDEuMS0zLDEuMS0zLTAuMWgtMi40Yy0wLjEsNC4yLDcuNyw0LjEsNy43LDAuMUMzODIuMywxMjcuMSwzODAuNCwxMjYuOCwzNzguNSwxMjYuNnoiLz48cG9seWdvbiBjbGFzcz0ic3QwIiBwb2ludHM9IjQ3MC44LDEyNC44IDQ3MiwxMjQuOCA0NzIsMTIyLjcgNDY3LjMsMTIyLjcgNDY3LjMsMTI0LjggNDY4LjQsMTI0LjggNDY4LjQsMTMwLjEgNDY3LjIsMTMwLjEgCgkJNDY3LjIsMTMyLjIgNDcyLjEsMTMyLjIgNDcyLjEsMTMwLjEgNDcwLjgsMTMwLjEgCSIvPjxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iNDc5LjksMTI3LjQgNDc1LjEsMTIyLjYgNDc0LjIsMTIyLjYgNDc0LjIsMTMyLjIgNDc2LjcsMTMyLjIgNDc2LjcsMTI3LjUgNDgxLjYsMTMyLjMgNDgyLjQsMTMyLjMgCgkJNDgyLjQsMTIyLjcgNDc5LjksMTIyLjcgCSIvPjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik00MzcuOCwxMjIuNmwtNC4zLDkuM3YwLjRoMi40bDAuNi0xLjJoMy44bDAuNiwxLjJoMi40di0wLjRsLTQuMy05LjNINDM3Ljh6IE00MzcuMiwxMjlsMS4xLTIuNWwxLjEsMi41CgkJSDQzNy4yeiIvPjxyZWN0IHg9IjE1MCIgeT0iMTA4LjQiIGNsYXNzPSJzdDAiIHdpZHRoPSI0MTUuMiIgaGVpZ2h0PSIyLjYiLz48L2c+PC9zdmc+">
+                <img alt="National Highway Traffic Safety Administration" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz48IS0tR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAyMC4xLjAsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApLS0+PHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDU2NS4yIDEwNi4xIiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCA1NjUuMiAxMDYuMTsiIHhtbDpzcGFjZT0icHJlc2VydmUiPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+LnN0MHtmaWxsOiNGRkZGRkY7fTwvc3R5bGU+PHRpdGxlPk1haW4gTkhUU0EgTG9nb193b190YWdfQiZhbXA7YW1wO1c8L3RpdGxlPjxnPjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xMS4xLDI1LjJjLTAuNCwwLTAuOCwwLjMtMC44LDAuOGMwLDAsMCwwLDAsMGMwLjIsMy4yLDEuNCw2LjIsMy42LDguNmMwLjMsMC4zLDAuOCwwLjQsMS4xLDAuMQoJCWMwLDAsMC4xLTAuMSwwLjEtMC4xbDIuMi0zLjNsLTIuMS02TDExLjEsMjUuMnoiLz48cGF0aCBjbGFzcz0ic3QwIiBkPSJNMjcuNywzMy4yaC03LjFsLTIuNSwzLjZjLTAuMiwwLjQtMC4xLDAuOCwwLjIsMS4xYzAsMCwwLjEsMCwwLjEsMC4xYzMuNiwxLjYsNy44LDEuNiwxMS40LDAKCQljMC40LTAuMiwwLjYtMC43LDAuNC0xYzAsMCwwLTAuMS0wLjEtMC4xTDI3LjcsMzMuMnoiLz48cGF0aCBjbGFzcz0ic3QwIiBkPSJNMTIsMjEuNGgyNC4zYzAuNCwwLDAuOC0wLjMsMC44LTAuOGMwLTAuMSwwLTAuMi0wLjEtMC4zYy0yLjgtNy4xLTEwLjgtMTAuNy0xNy45LTcuOQoJCWMtMy42LDEuNC02LjUsNC4zLTcuOSw3LjljLTAuMiwwLjQsMCwwLjksMC40LDFDMTEuOCwyMS4zLDExLjksMjEuNCwxMiwyMS40eiIvPjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0zNy4yLDI1LjJoLTQuMWwtMi4xLDZsMi4yLDMuM2MwLjIsMC40LDAuNywwLjUsMS4xLDAuMmMwLjEsMCwwLjEtMC4xLDAuMS0wLjFjMi4yLTIuNCwzLjQtNS40LDMuNi04LjYKCQlDMzgsMjUuNiwzNy43LDI1LjIsMzcuMiwyNS4yQzM3LjIsMjUuMiwzNy4yLDI1LjIsMzcuMiwyNS4yeiIvPjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik00NS4yLDEuMUgzLjFDMS40LDEuMSwwLDIuNCwwLDQuMWMwLDAsMCwwLDAsMHY0Mi4xYzAsMS43LDEuNCwzLjEsMy4xLDMuMWg0Mi4xYzEuNywwLDMuMS0xLjQsMy4xLTMuMVY0LjEKCQlDNDguMywyLjQsNDYuOSwxLjEsNDUuMiwxLjF6IE0zNS45LDM4LjVjLTEsMC44LTIsMS42LTMuMSwyLjJjLTUuNCwzLTExLjksMy0xNy4zLDBjLTUuNi0zLjEtOS05LTktMTUuNGMwLDAsMC0wLjEsMC0wLjEKCQljMC4yLTkuOCw4LjMtMTcuNSwxOC4xLTE3LjNjOS40LDAuMiwxNyw3LjgsMTcuMywxNy4zYzAsMCwwLDAuMSwwLDAuMUM0MS45LDMwLjMsMzkuNywzNS4xLDM1LjksMzguNXoiLz48cG9seWdvbiBjbGFzcz0ic3QwIiBwb2ludHM9IjgwLjYsNzcuNyA3OS44LDc1LjIgNzguNiw3MS40IDc3LjQsNzUuMiA3Ni42LDc3LjcgNzMuOSw3Ny43IDcwLDc3LjcgNzMuMSw4MCA3NS4zLDgxLjYgNzQuNSw4NC4xIAoJCTczLjMsODcuOCA3Ni40LDg1LjUgNzguNiw4NCA4MC44LDg1LjUgODMuOSw4Ny44IDgyLjcsODQuMSA4MS45LDgxLjYgODQuMSw4MCA4Ny4yLDc3LjcgODMuMyw3Ny43IAkiLz48cGF0aCBjbGFzcz0ic3QwIiBkPSJNOTkuNiw1NS41SDU3LjVjLTEuNywwLTMuMSwxLjQtMy4xLDMuMXY0Mi4xYzAsMS43LDEuNCwzLjEsMy4xLDMuMWMwLDAsMCwwLDAsMGg0Mi4xYzEuNywwLDMuMS0xLjQsMy4xLTMuMQoJCVY1OC41QzEwMi43LDU2LjgsMTAxLjMsNTUuNSw5OS42LDU1LjVDOTkuNiw1NS41LDk5LjYsNTUuNSw5OS42LDU1LjV6IE05Ny45LDc0LjVMODYuMiw4M2w0LjUsMTMuN2MwLDAuMSwwLDAuMy0wLjIsMC4zCgkJYzAsMC0wLjEsMC0wLjEsMGMtMC4xLDAtMC4xLDAtMC4yLTAuMWwtMTEuNy04LjVMNjYuOSw5N2MwLDAtMC4xLDAuMS0wLjIsMC4xYy0wLjEsMC0wLjMtMC4xLTAuMy0wLjNjMCwwLDAtMC4xLDAtMC4xTDcxLDgzCgkJbC0xMS43LTguNWMtMC4xLTAuMS0wLjEtMC4zLTAuMS0wLjRjMC4xLTAuMSwwLjEtMC4xLDAuMi0wLjFoMTQuNGw0LjUtMTMuN2MwLTAuMSwwLjItMC4yLDAuMy0wLjJjMC4xLDAsMC4xLDAuMSwwLjIsMC4yTDgzLjMsNzQKCQloMTQuNGMwLjEsMCwwLjMsMC4xLDAuMywwLjNDOTgsNzQuNCw5OCw3NC40LDk3LjksNzQuNUw5Ny45LDc0LjV6Ii8+PHBhdGggY2xhc3M9InN0MCIgZD0iTTU3LjUsNDkuM2g0Mi4xYzEuNywwLDMuMS0xLjQsMy4xLTMuMVY0LjJjMC0xLjctMS40LTMuMS0zLjEtMy4xSDU3LjVjLTEuNywwLTMuMSwxLjQtMy4xLDMuMXY0Mi4xCgkJQzU0LjQsNDgsNTUuOCw0OS4zLDU3LjUsNDkuM0M1Ny41LDQ5LjMsNTcuNSw0OS4zLDU3LjUsNDkuM3ogTTgzLjUsNDMuMkw3OCwzNC45bC0wLjItNi4ybDAuMy0xbDkuOCwxNS42TDgzLjUsNDMuMnogTTgwLjYsNi44CgkJYzIuMSwwLDMuOCwxLjcsMy44LDMuOGMwLDIuMS0xLjcsMy44LTMuOCwzLjhjLTAuOCwwLTEuNi0wLjMtMi4yLTAuN2MtMS43LTEuMi0yLjEtMy42LTAuOS01LjJDNzguMyw3LjQsNzkuNCw2LjgsODAuNiw2LjgKCQlMODAuNiw2Ljh6IE02Ni44LDIzLjFjMS0xLjMsMi4xLTIuNSwzLjMtMy43YzAuNy0wLjcsMi4zLTIuMiwzLjMtMy4xYzEuNi0xLjQsNC4zLTIuMSw2LjEtMC43YzAuNywwLjYsMS4yLDEuNCwxLjUsMi4zCgkJYzAuNCwxLjIsMS4xLDIuNiwxLjUsMy44bDAuMSwwLjFjMC4xLDAuMSwwLjEsMC4yLDAuMiwwLjJsMC4xLDAuMWw1LjQsMi41TDg3LDI4LjFsLTEuNy0wLjZjLTEuMS0wLjUtMS4yLTAuNC0yLjMtMC45CgkJYy0wLjYtMC4yLTAuNi0wLjMtMS4yLTAuNWMtMC4yLTAuMS0wLjQtMC4yLTAuNi0wLjNjLTAuNy0wLjItMS40LTAuOC0yLjMtMy4yYzAsMC4xLTIuMSw2LTIuMSw2YzAsMC44LDAuMSwzLjIsMC4yLDQuOWwwLjEsMS4yCgkJYzAuMSwxLjUtMC40LDItMS40LDIuOWMtMiwxLjktNS43LDUuNi01LjcsNS42bC0zLTIuNWw1LjctNmMwLDAtMC43LTMuNy0wLjctNC4xYy0wLjMtMS4xLTAuNC0yLjMtMC4zLTMuNGMwLTAuMSwwLTAuMiwwLTAuMwoJCWwxLjItNC45Yy0wLjYsMC40LTEuMiwwLjktMS44LDEuNWMtMS4zLDEuNC0yLjUsMi45LTMuNiw0LjRMNjQuNywyNkM2NC44LDI1LjgsNjYuNCwyMy42LDY2LjgsMjMuMXoiLz48cGF0aCBjbGFzcz0ic3QwIiBkPSJNNDUuMiw1NS41SDMuMWMtMS43LDAtMy4xLDEuNC0zLjEsMy4xYzAsMCwwLDAsMCwwdjQyLjFjMCwxLjcsMS40LDMuMSwzLjEsMy4xYzAsMCwwLDAsMCwwaDQyLjEKCQljMS43LDAsMy4xLTEuNCwzLjEtMy4xVjU4LjVDNDguMyw1Ni44LDQ2LjksNTUuNSw0NS4yLDU1LjVDNDUuMiw1NS41LDQ1LjIsNTUuNSw0NS4yLDU1LjV6IE02LjMsOTMuM2wxMS4zLTI3LjVoMS4yTDkuNiw5My4zSDYuM3oKCQkgTTI1LjksOTMuM2wtMC4xLTIuM2gtMy4zbC0wLjEsMi4zaC05LjdsNy4yLTI3LjVoMy42bC0wLjEsMi4zaDEuNWwtMC4xLTIuM2gzLjZsNy4yLDI3LjVIMjUuOXogTTM4LjcsOTMuM2wtOS4yLTI3LjVoMS4yTDQyLDkzLjMKCQlIMzguN3oiLz48cG9seWdvbiBjbGFzcz0ic3QwIiBwb2ludHM9IjIyLjksODEuMyAyMi42LDg3LjYgMjUuNyw4Ny42IDI1LjQsODEuMyAJIi8+PHBvbHlnb24gY2xhc3M9InN0MCIgcG9pbnRzPSIyNSw3MS42IDIzLjMsNzEuNiAyMyw3Ny45IDI1LjMsNzcuOSAJIi8+PHBvbHlnb24gY2xhc3M9InN0MCIgcG9pbnRzPSIxNzguOSw1MC40IDEyOC42LDEuMiAxMTguNCwxLjIgMTE4LjQsMTA0IDE0Ni4zLDEwNCAxNDYuMyw1NS4xIDE5Ni41LDEwNC4xIDIwNi42LDEwNC4xIDIwNi42LDEuNyAKCQkxNzguOSwxLjcgCSIvPjxwb2x5Z29uIGNsYXNzPSJzdDAiIHBvaW50cz0iMjcxLjUsMzguNCAyNDEuNCwzOC40IDI0MS40LDEuNyAyMTMuOCwxLjcgMjEzLjgsMTA0IDI0MS40LDEwNCAyNDEuNCw2My40IDI3MS41LDYzLjQgMjcxLjUsMTA0IAoJCTI5OS4xLDEwNCAyOTkuMSwxLjcgMjcxLjUsMS43IAkiLz48cG9seWdvbiBjbGFzcz0ic3QwIiBwb2ludHM9IjMwNSwyNiAzMjkuOSwyNiAzMjkuOSwxMDQgMzU2LjcsMTA0IDM1Ni43LDI2IDM4MS40LDI2IDM4MS40LDEuNyAzMDUsMS43IAkiLz48cGF0aCBjbGFzcz0ic3QwIiBkPSJNNDUzLjYsNDkuMUM0NDYsNDUsNDM2LDQzLjgsNDI2LDQyLjdjLTMtMC4zLTUuOS0wLjgtOC44LTEuNmMtMi41LTAuOC00LjQtMS44LTUuNS0zLjQKCQljLTAuOC0xLjItMS4yLTIuNS0xLjItMy45YzAtMC4yLDAtMC41LDAtMC44YzAuMi0yLjgsMi01LDQuNi02LjVjMi45LTEuNiw2LjItMi40LDkuNS0yLjNjMy4xLTAuMSw2LjIsMC43LDguOSwyLjMKCQljMi40LDEuNCwzLjksNCwzLjksNi44djAuNkg0NjN2LTEuMWMwLjItOS43LTQuNC0xOS0xMi4zLTI0LjdDNDQzLjQsMi43LDQzMy42LDAsNDIzLjgsMFM0MDQuMywyLjcsMzk3LDguMQoJCWMtNy45LDUuNi0xMi41LDE0LjgtMTIuMywyNC41YzAsMC4yLDAsMC41LDAsMC43bDAsMGMwLjEsMTEuMSwzLjksMTguNywxMC41LDIzLjdzMTUuOCw3LjIsMjYuOCw4bDAsMGMzLjQsMC4xLDYuOCwwLjUsMTAuMiwxLjIKCQljMi45LDAuNiw1LjEsMS43LDYuNCwzLjJjMC45LDEuMSwxLjQsMi41LDEuMywzLjljMCwyLjctMS43LDQuNy00LjUsNi4xYy02LjgsMy0xNC41LDIuOS0yMS4yLTAuMWMtMi45LTEuNi00LjctMy44LTQuNy02Ljd2LTAuNgoJCWgtMjYuMXYxYy0wLjIsMTAsNC43LDE5LjQsMTIuOSwyNWM3LjcsNS41LDE4LDguMiwyOC4zLDguMnMyMC44LTIuOCwyOC42LTguMnMxMy4yLTEzLjcsMTMuMS0yNC42CgkJQzQ2Ni4zLDYwLjYsNDYxLjIsNTMuMyw0NTMuNiw0OS4xeiIvPjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik01MTkuNSwwLjloLTExLjFsLTQ1LjUsOTguN3YzLjhoMjUuM2w1LjktMTIuN0g1MzRsNS45LDEyLjdoMjUuM3YtMy44TDUxOS41LDAuOXogTTUwMi42LDY4bDExLjMtMjUuMwoJCWwwLjUsMS4yTDUyNS41LDY4SDUwMi42eiIvPjwvZz48L3N2Zz4=">
+                <span class="sr-only">Homepage</span>
+            </a>
+        </div>
+        <!--New DOT logo-->
+
+        <div id="navbar-links" class="navbar-links collapse navbar-collapse">
+            <!--NHTSA Menu-->
+            <ul id="main-menu" class="nav navbar-nav navbar-right">
+                <li class="bold"><a href="https://www.nhtsa.gov/ratings" target="_blank" rel="noopener noreferrer"><span data-text="Ratings">Ratings</span></a></li>
+                <li class="bold"><a href="https://www.nhtsa.gov/recalls" target="_blank" rel="noopener noreferrer"><span data-text="Recalls">Recalls</span></a></li>
+                <li><a href="https://www.nhtsa.gov/risky-driving" target="_blank" rel="noopener noreferrer"><span data-text="Risky Driving">Risky Driving</span></a></li>
+                <li><a href="https://www.nhtsa.gov/road-safety" target="_blank" rel="noopener noreferrer"><span data-text="Road Safety">Road Safety</span></a></li>
+                <li><a href="https://www.nhtsa.gov/equipment" target="_blank" rel="noopener noreferrer"><span data-text="Equipment">Equipment</span></a></li>
+                <li><a href="https://www.nhtsa.gov/technology-innovation" target="_blank" rel="noopener noreferrer"><span data-text="Technology &amp; Innovation">Technology &amp; Innovation</span></a></li>
+                <li class="navbar-primary--utility-nav">
+                    <div class="utility-nav">
+                        <div id="utility-menu" class="utility-nav--links">
+                            <div class="dropdown">
+                                <a href="https://vpic.nhtsa.dot.gov/Downloads/#" id="InformationFor" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle more-dropdown">More Info</a>
+                                <ul aria-labelledby="InformationFor" class="dropdown-menu">
+                                    <li>
+                                        <a href="https://www.nhtsa.gov/research" target="_blank" rel="noopener noreferrer">Research</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.nhtsa.gov/data" target="_blank" rel="noopener noreferrer">Data</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.nhtsa.gov/laws-regulations" target="_blank" rel="noopener noreferrer">Laws &amp; Regulations</a>
+                                    </li>
+                                    <li><span class="menu_item_list_separator"></span></li>
+                                    <li>
+                                        <a href="https://www.nhtsa.gov/about-nhtsa/briefing-room" target="_blank" rel="noopener noreferrer">Briefing Room</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.nhtsa.gov/parents-and-caregivers" target="_blank" rel="noopener noreferrer">Parents &amp; Caregivers</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.nhtsa.gov/importing-vehicle" target="_blank" rel="noopener noreferrer">Importing a Vehicle</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.nhtsa.gov/vehicle-manufacturers" target="_blank" rel="noopener noreferrer">Vehicle Manufacturers</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.nhtsa.gov/highway-safety-grants-program" target="_blank" rel="noopener noreferrer">State Governments</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.nhtsa.gov/enforcement-justice-services" target="_blank" rel="noopener noreferrer">Enforcement &amp; Justice</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://www.nhtsa.gov/about-nhtsa/careers-and-internships" target="_blank" rel="noopener noreferrer">Careers at NHTSA</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <!--NHTSA Menu-->
+        </div>
+
+    </nav>
+
+    <!--bottom light-->
+    <!--app version-->
+    <div class="vpic-header">
+        <div class="container">
+            <!--Portal header-->
+            <div>
+                <h3 class="">
+                        <a href="https://vpic.nhtsa.dot.gov/" style="color:white;">
+                            Product Information Catalog and Vehicle Listing (vPIC)
+                            <small style="color:#999999;">Powered by </small>
+                            <img src="./vpic.nhtsa.dot.gov_files/vpic-small.png">
+                        </a>
+                </h3>
+            </div>
+                <!--Portal header-->
+                <div class="pull-right">
+                    
+
+<div id="AppVersion">
+
+	<div>
+		<div class="container">
+			<div class="appversion text-right">
+				Version: 4.08 last updated on 8/15/2026
+
+				<a href="https://vpic.nhtsa.dot.gov/Downloads/ReleaseNotes" title="Release Notes">
+					<span class="glyphicon glyphicon-th-list" aria-hidden="true"> </span>
+					Release Notes
+				</a>
+
+				<a href="https://vpic.nhtsa.dot.gov/mfrportal/EmailSubscription/Manage" title="Subscribe/Unsubscribe" target="_blank" rel="noopener noreferrer">
+					<span class="glyphicon glyphicon-envelope" aria-hidden="true"> </span>
+					Subscribe/Unsubscribe
+				</a>
+
+				<a href="https://vpic.nhtsa.dot.gov/Downloads/FAQ" title="Frequently Asked Questions">
+					<span class="glyphicon glyphicon-question-sign" aria-hidden="true"> </span>
+					F.A.Q.
+				</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+                </div>
+        </div>
+    </div>
+    <!--app version-->
+</div>
+
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        var form = document.getElementById("nhtsaForm");
+
+        if (form) {
+            form.addEventListener("submit", function(e) {
+                e.preventDefault();
+
+                var query = document.getElementById('userQuery').value;
+
+                if (query) {
+                    var encodedQuery = encodeURIComponent(query);
+                    var targetUrl = "https://www.nhtsa.gov/search#gsc.q=" + encodedQuery;
+                    window.open(targetUrl, '_blank')
+                }
+            });
+        }
+    });
+</script>
+
+    <div b-8dvwr03e81="" class="container">
+        <main b-8dvwr03e81="" role="main" class="pb-3">
+            
+<h2>Standalone Databases</h2>
+<p>
+    Standalone vPIC Databases are intended for use by developers and researchers who prefer to use a local database instead of calling the vPIC API.
+    There are quotas and rate limits associated with the usage of the vPIC API, and you can avoid reaching the limits by using the standalone databases.
+    Please be aware that standalone databases are limited to <i><u>VIN Decoding</u></i> functionality only.
+    To retrieve other information (such as makes, models, variables, attributes, etc.), you will still need to use vPIC APIs.
+</p>
+
+<h3>MS SQL Server</h3>
+<p>
+    SQL Server backup file is compatible with MS SQL Server 2019 and newer versions.
+</p>
+<p>
+    <a href="https://vpic.nhtsa.dot.gov/downloads/vPICList_lite_2026_08.bak.zip" target="_blank" class="btn btn-info">
+        <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
+        Download
+    </a>
+    <b>MS SQL Server backup file "vPICList_lite_2026_08.bak.zip" updated on 08/14/2026, file size: 190 MB</b>
+</p>
+<p>
+    Once downloaded, you can restore it. Here’s an example using the command below:<br>
+    </p><pre>RESTORE DATABASE [vPICList_Lite]
+FROM  DISK = N'{path-to-downloaded-bak-file}' WITH  FILE = 1,
+MOVE N'vPICList_Lite' TO N'{path-to-MSSQL\DATA-folder}\vPICList_Lite.mdf',
+MOVE N'vPICList_Lite_log' TO N'{path-to-MSSQL\DATA-folder}\vPICList_Lite_log.ldf'</pre>
+<p></p>
+
+<p>
+    Once restored, you can decode a VIN by calling the 'spVinDecode' stored procedure like this:
+    </p><pre>EXEC dbo.spVinDecode 'ABC12345XYZ123456'</pre>
+    See the <a href="https://vpic.nhtsa.dot.gov/Downloads/FAQ">FAQs</a> page for details about specific parameters.
+<p></p>
+
+<h3>PostgreSQL</h3>
+<p>
+    PostgreSQL backup files are compatible with PostgreSQL version 17 and newer. The PostgreSQL database is provided in two formats: custom and plain.
+    The custom format is a compressed binary file containing the database. The plain format is a plain-text SQL file containing scripts to create the database.
+    Both formats will restore the database into a separate schema named 'vpic'.
+
+</p>
+<p>
+    <a href="https://vpic.nhtsa.dot.gov/downloads/vPICList_lite_2026_08.custom.zip" target="_blank" class="btn btn-info">
+        <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
+        Download
+    </a>
+    <b>PostgreSQL custom backup file "vPICList_lite_2026_08.custom.zip" updated on 08/14/2026, file size: 69.2 MB</b>
+</p>
+
+<p>
+    <a href="https://vpic.nhtsa.dot.gov/downloads/vPICList_lite_2026_08.plain.zip" target="_blank" class="btn btn-info">
+        <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
+        Download
+    </a>
+    <b>PostgreSQL plain backup file "vPICList_lite_2026_08.plain.zip" updated on 08/14/2026, file size: 74.1 MB</b>
+</p>
+<p>
+    All ownership and privilege information has been excluded. However, to ensure no errors are encountered during the restore process,
+    it is recommended to restore the backup with the --no-owner and --no-privileges options, as shown in the examples below. Additionally,
+    ensure that the account used for the restoration has login access to the target database.
+    <br>
+    <br>Once downloaded, you can restore the database like this using the Windows command line while inside a PostgreSQL installation directory:
+    <br><b>Custom:</b>
+    </p><pre>pg_restore.exe --host {your_host} --port {your_port} --username {your_username} --dbname {your_db} 
+    --no-password --no-owner --no-privileges --verbose {path-to-downloaded-custom-file}</pre>
+
+    <b>Plain:</b>
+    <pre>psql.exe --host {your_host} --port {your_port} --username {your_username} --dbname {your_db} 
+    --file {path-to-downloaded-plain-file}</pre>
+<p></p>
+<p>
+    Once restored, you can decode a VIN by calling the 'spVinDecode' function like this:
+    <br></p><pre>select * from vpic.spVinDecode('ABC12345XYZ123456')</pre>
+    See the <a href="https://vpic.nhtsa.dot.gov/Downloads/FAQ">FAQs</a> page for details about specific parameters.
+<p></p>
+
+        </main>
+    </div>
+
+    <footer class="footer-site">
+	<div class="nhtsa-footer-top">
+		<div class="container">
+			<div class="text-center">
+				Contact NHTSA Manufacturer Helpdesk at <a href="mailto:manufacturerinfo@dot.gov">manufacturerinfo@dot.gov</a> or 888-399-3277
+			</div>
+		</div>
+	</div>
+	<div role="navigation" aria-label="footer nav links" class="container">
+		<div class="row">
+			<div class="col-md-3 col-sm-4 col-md-push-6 col-sm-push-4">
+				<div data-toggle-class="active" class="footer-site--links-title">NHTSA Information<span class="caret"></span></div>
+				<ul class="footer-site--links-container">
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.nhtsa.gov/about-nhtsa" title="">About NHTSA</a></li>
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.nhtsa.gov/about-nhtsa/working-nhtsa" title="">Careers &amp; Internships</a></li>
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.nhtsa.gov/about-nhtsa/contact-us" title="">Contact Us</a></li>
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.nhtsa.gov/recalls" title="">Recall Information</a></li>
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.nhtsa.gov/report-a-safety-problem" title="">Report a Safety Problem</a></li>
+				</ul>
+				<div data-toggle-class="active" class="footer-site--links-title">Information For<span class="caret"></span></div>
+				<ul class="footer-site--links-container">
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.nhtsa.gov/vehicle-manufacturers" title="">Vehicle Manufacturers</a></li>
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.nhtsa.gov/highway-safety-grants-program" title="Information and resources for States about highway safety grants.">State Governments</a></li>
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.nhtsa.gov/enforcement-justice-services" title="Information and resources for the Law Enforcement and Judicial community.">Enforcement &amp; Justice</a></li>
+				</ul>
+				<div data-toggle-class="active" class="footer-site--links-title">NHTSA Sites<span class="caret"></span></div>
+				<ul class="footer-site--links-container">
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.nhtsa.gov/safercar-app" title="">SaferCar App</a></li>
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.trafficsafetymarketing.gov/" title="">TrafficSafetyMarketing.gov</a></li>
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.ems.gov/" title="">EMS.gov</a></li>
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.911.gov/" title="">911.gov</a></li>
+				</ul>
+			</div>
+			<div class="col-md-3 col-sm-4 col-md-push-6 col-sm-push-4">
+				<div data-toggle-class="active" class="footer-site--links-title">Website Information<span class="caret"></span></div>
+				<ul class="footer-site--links-container">
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.nhtsa.gov/about-nhtsa/web-policies-notices" title="">Web Policies &amp; Notices</a></li>
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.nhtsa.gov/about-nhtsa/accessibility" title="">Accessibility</a></li>
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.nhtsa.gov/about-nhtsa/foia" title="">FOIA</a></li>
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.nhtsa.gov/about-nhtsa/privacy-policy" title="">Privacy Policy</a></li>
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.transportation.gov/regulations/dot-information-dissemination-quality-guidelines" title="">Information Quality</a></li>
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.transportation.gov/vulnerability-disclosure-policy" title="">Vulnerability Disclosure Policy</a></li>
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.eeoc.gov/eeoc/statistics/nofear/qanda.cfm" title="">No Fear Act Data</a></li>
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.transportation.gov/ethics" title="">Ethics</a></li>
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.transportation.gov/civil-rights" title="">Civil Rights</a></li>
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.oig.dot.gov/" title="">Office of Inspector General</a></li>
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.oig.dot.gov/hotline" title="">OIG Hotline</a></li>
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.usa.gov/business" title="">BusinessUSA</a></li>
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.usa.gov/" title="">USA.gov</a></li>
+					<li><a target="_blank" rel="noopener noreferrer" href="https://www.whitehouse.gov/" title="">WhiteHouse.gov</a></li>
+				</ul>
+			</div>
+			<div itemscope="itemscope" itemtype="http://schema.org/GovernmentOrganization" class="col-md-3 col-sm-4 footer-site--nhtsa-info col-md-pull-6 col-sm-pull-8">
+				<meta content="https://www.nhtsa.gov/sites/nhtsa.dot.gov/themes/nhtsa_gov/images/logo-NHTSA-property.png" itemprop="logo">
+				<img alt="National Highway Traffic Safety Administration" src="./vpic.nhtsa.dot.gov_files/NHTSA-logo-small-viewport.svg" class="footer-site--nhtsa-logo">
+				<p itemprop="name" class="strong">National Highway Traffic Safety Administration</p>
+				<p itemprop="address" itemscope="itemscope" itemtype="http://schema.org/PostalAddress"><span itemprop="streetAddress">1200 New Jersey Avenue, SE</span> <br> <span itemprop="addressLocality">Washington, D.C. </span> <span itemprop="postalCode">20590</span></p>
+				<p>
+					<span itemprop="telephone"><a href="tel:888-327-4236">888-327-4236</a></span><br>
+					<span itemprop="telephone"><a href="tel:888-275-9171">888-275-9171</a></span> (TTY)
+				</p>
+				<p>
+					<a target="_blank" class="soc-media-icon" href="https://twitter.com/@nhtsagov" rel="noopener noreferrer"><img width="20" height="20" src="./vpic.nhtsa.dot.gov_files/x.svg"></a>
+					<a target="_blank" class="soc-media-icon" href="https://www.linkedin.com/company/national-highway-traffic-safety-administration-nhtsa" rel="noopener noreferrer"><img width="25" height="25" src="./vpic.nhtsa.dot.gov_files/LinkedIn.svg" alt="LinkedIn"></a>
+					<a target="_blank" class="soc-media-icon" href="https://www.facebook.com/NHTSA" rel="noopener noreferrer"><img src="./vpic.nhtsa.dot.gov_files/facebook.png"></a>
+					<a target="_blank" class="soc-media-icon" href="https://www.youtube.com/user/usdotnhtsa" rel="noopener noreferrer"><img src="./vpic.nhtsa.dot.gov_files/youtube.png"></a>
+					<a target="_blank" class="soc-media-icon" href="https://www.instagram.com/nhtsagov" rel="noopener noreferrer"><img src="./vpic.nhtsa.dot.gov_files/instagram.png"></a>
+				</p>
+				<p><br><br><br></p>
+				<p><a target="_blank" href="https://www.transportation.gov/" rel="noopener noreferrer"><img alt="U.S. Department of Transportation" src="./vpic.nhtsa.dot.gov_files/DOT-logo-with-text.svg" style="width: 183px; height: 38px;"></a></p>
+			</div>
+		</div>
+		<a a="" target="_blank" href="https://www.transportation.gov/contact-us?title=NHTSA%20Page&amp;url=https://nhtsa.gov/;url=https://nhtsa.gov/F" rel="noopener noreferrer" class="footer-site--feedback">
+			<span class="badge badge-primary">
+				Submit Feedback &gt;
+			</span>
+		</a>
+	</div>
+</footer>
+
+<div class="print-footer print-only">
+	<div>Contact NHTSA Manufacturer Helpdesk at manufacturerinfo@dot.gov or 888-399-3277</div>
+	<div>
+		National Highway Traffic Safety Administration, 1200 New Jersey Avenue, SE Washington, DC 20590, 888-327-4236, 888-275-9171 (TTY)
+	</div>
+</div>
+
+    
+
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true" style="visibility: visible !important;"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>
