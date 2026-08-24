@@ -13,7 +13,10 @@ ENV UV_PROJECT_ENVIRONMENT=/app/.venv \
     UV_PYTHON_PREFERENCE=only-system \
     UV_PYTHON_DOWNLOADS=never
 
-COPY pyproject.toml uv.lock .python-version ./
+# README.md included here because hatchling (our build backend) validates
+# project metadata -- including the readme file's existence -- before it
+# will build the package at all, even for `uv sync --no-dev`.
+COPY pyproject.toml uv.lock .python-version README.md ./
 
 
 # ---------------------------------------------------------------------------

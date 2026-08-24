@@ -26,5 +26,4 @@ logs/
 !migrations/*.sql
 
 # Misc
-README.md
 .DS_Store
