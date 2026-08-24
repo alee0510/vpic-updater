@@ -29,3 +29,6 @@ CREATE TABLE IF NOT EXISTS update_history (
 CREATE INDEX IF NOT EXISTS idx_update_history_version ON update_history (version);
 CREATE INDEX IF NOT EXISTS idx_update_history_status_finished
     ON update_history (status, finished_at DESC);
+
+-- Optional addition to update_history for richer audit trail:
+ALTER TABLE update_history ADD COLUMN IF NOT EXISTS validation_detail JSONB;

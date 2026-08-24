@@ -10,13 +10,14 @@ pointer completely untouched.
 
 import logging
 import subprocess
+import psycopg2
 from pathlib import Path
-
 from psycopg2.extensions import connection as PGConnection
 
-from vpic_updater.core.config import ADVISORY_LOCK_KEY, DEFAULT_APP_ROLE, DEFAULT_SCHEMA, DEFAULT_MIN_ROW_COUNT
+from vpic_updater.core.config import ADVISORY_LOCK_KEY, CORE_TABLE_MIN_ROWS, DEFAULT_APP_ROLE, DEFAULT_SCHEMA, DEFAULT_MIN_ROW_COUNT, REQUIRED_FUNCTIONS, SMOKE_TEST_VIN
 from vpic_updater.core.db import DatabaseDSN, connect, with_dbname
 from vpic_updater.model.load import LoadError
+from vpic_updater.model.validation import ValidationResult
 
 logger = logging.getLogger("vpic_updater.load")
 
@@ -140,24 +141,51 @@ def restore_dump(
 
 # Step-3: Validate + grant access
 def validate_database(
-    target_dsn: DatabaseDSN,
+    target_admin_dsn: DatabaseDSN,
     db_name: str,
-    min_row_count: int = DEFAULT_MIN_ROW_COUNT,
     schema: str = DEFAULT_SCHEMA,
-    table: str = "vin",
-) -> int:
-    """Connect into the newly restored database and confirm it looks like
-    a real, complete dataset before we allow promotion.
+    min_rows: dict[str, int] | None = None,
+    run_smoke_test: bool = True,
+) -> ValidationResult:
+    """Validate a freshly restored database before allowing promotion.
 
-    NOTE: table name 'vin' is a placeholder based on the vPIC docs'
-    reference to a VIN-decoding stored procedure/function -- confirm the
-    actual primary table name once a real dump has been restored locally,
-    and adjust here.
+    Checks, in order (fails fast on the first problem found):
+      1. Each core table in CORE_TABLE_MIN_ROWS exists and meets its floor.
+      2. Each function in REQUIRED_FUNCTIONS exists in the schema.
+      3. (optional) vpic.spvindecode() actually runs against a real VIN
+         and returns at least one row -- the strongest signal that the
+         restore is functionally complete, not just structurally present.
     """
-    dsn = with_dbname(target_dsn, db_name)
+    min_rows = min_rows if min_rows is not None else CORE_TABLE_MIN_ROWS
+    dsn = with_dbname(target_admin_dsn, db_name)
     conn = connect(dsn)
     try:
-        with conn.cursor() as cur:
+        row_counts = _check_core_tables(conn, schema, min_rows, db_name)
+        _check_required_functions(conn, schema, db_name)
+
+        smoke_test_passed = False
+        if run_smoke_test:
+            smoke_test_passed = _run_decode_smoke_test(conn, schema, db_name)
+    finally:
+        conn.close()
+
+    logger.info(
+        "Validated %s: %d core tables checked, smoke_test=%s",
+        db_name, len(row_counts), smoke_test_passed,
+    )
+    return ValidationResult(
+        db_name=db_name,
+        table_row_counts=row_counts,
+        smoke_test_passed=smoke_test_passed,
+    )
+
+
+def _check_core_tables(
+    conn: PGConnection, schema: str, min_rows: dict[str, int], db_name: str
+) -> dict[str, int]:
+    row_counts: dict[str, int] = {}
+    with conn.cursor() as cur:
+        for table, floor in min_rows.items():
             cur.execute(
                 "SELECT 1 FROM information_schema.tables "
                 "WHERE table_schema = %s AND table_name = %s",
@@ -165,57 +193,63 @@ def validate_database(
             )
             if cur.fetchone() is None:
                 raise LoadError(
-                    f"Expected table {schema}.{table} not found in {db_name} "
+                    f"{db_name}: expected table {schema}.{table} not found "
                     f"after restore -- schema may not match expectations"
                 )
 
             cur.execute(f'SELECT count(*) FROM "{schema}"."{table}"')
-            row_count = cur.fetchone()[0]
-    finally:
-        conn.close()
+            count = cur.fetchone()[0]
+            if count < floor:
+                raise LoadError(
+                    f"{db_name}: {schema}.{table} row count too low "
+                    f"({count} < {floor}) -- refusing to promote"
+                )
+            row_counts[table] = count
 
-    if row_count < min_row_count:
-        raise LoadError(
-            f"{db_name}.{schema}.{table} row count too low "
-            f"({row_count} < {min_row_count}) -- refusing to promote"
-        )
-
-    logger.info("Validated %s: %s.%s has %d rows", db_name, schema, table, row_count)
-    return row_count
+    return row_counts
 
 
-def grant_app_access(
-    target_admin_dsn: DatabaseDSN,
-    db_name: str,
-    app_role: str = DEFAULT_APP_ROLE,
-    schema: str = DEFAULT_SCHEMA,
-) -> None:
-    """Per-database GRANTs -- the safe, automatable substitute for editing
-    pg_hba.conf on every run (agreed: pg_hba gets one permanent generic
-    rule set up manually, access control happens here instead)."""
-    admin_conn = connect(target_admin_dsn, autocommit=True)
-    try:
-        with admin_conn.cursor() as cur:
+def _check_required_functions(conn: PGConnection, schema: str, db_name: str) -> None:
+    with conn.cursor() as cur:
+        for func_name in REQUIRED_FUNCTIONS:
             cur.execute(
-                f'GRANT CONNECT, TEMPORARY ON DATABASE "{db_name}" TO {app_role}'
+                "SELECT 1 FROM pg_proc p "
+                "JOIN pg_namespace n ON p.pronamespace = n.oid "
+                "WHERE n.nspname = %s AND p.proname = %s",
+                (schema, func_name),
             )
-    finally:
-        admin_conn.close()
+            if cur.fetchone() is None:
+                raise LoadError(
+                    f"{db_name}: expected function {schema}.{func_name}() "
+                    f"not found after restore"
+                )
 
-    scoped_dsn = with_dbname(target_admin_dsn, db_name)
-    conn = connect(scoped_dsn, autocommit=True)
+
+def _run_decode_smoke_test(conn: PGConnection, schema: str, db_name: str) -> bool:
+    """Actually call spvindecode() against a known VIN. Any exception here
+    means the restored functions/tables can't perform a real decode, which
+    is a harder failure than a missing table -- surface it clearly."""
     try:
         with conn.cursor() as cur:
-            cur.execute(f'GRANT USAGE ON SCHEMA "{schema}" TO {app_role}')
-            cur.execute(f'GRANT SELECT ON ALL TABLES IN SCHEMA "{schema}" TO {app_role}')
             cur.execute(
-                f'ALTER DEFAULT PRIVILEGES IN SCHEMA "{schema}" '
-                f'GRANT SELECT ON TABLES TO {app_role}'
+                f'SELECT count(*) FROM "{schema}".spvindecode(%s)',
+                (SMOKE_TEST_VIN,),
             )
-    finally:
-        conn.close()
+            result_count = cur.fetchone()[0]
+    except psycopg2.Error as exc:
+        raise LoadError(
+            f"{db_name}: VIN decode smoke test raised an error calling "
+            f"{schema}.spvindecode(): {exc}"
+        ) from exc
 
-    logger.info("Granted %s access to %s.%s", app_role, db_name, schema)
+    if result_count == 0:
+        raise LoadError(
+            f"{db_name}: VIN decode smoke test returned zero rows for "
+            f"a known-valid VIN ({SMOKE_TEST_VIN}) -- decode pipeline "
+            f"appears non-functional after restore"
+        )
+
+    return True
 
 # Step-4: Promotion + history
 def promote(control_conn: PGConnection, db_name: str, version: str, released_on) -> None:
