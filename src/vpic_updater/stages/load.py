@@ -14,7 +14,7 @@ import psycopg2
 from pathlib import Path
 from psycopg2.extensions import connection as PGConnection
 
-from vpic_updater.core.config import ADVISORY_LOCK_KEY, CORE_TABLE_MIN_ROWS, DEFAULT_SCHEMA, REQUIRED_FUNCTIONS, SMOKE_TEST_VIN
+from vpic_updater.core.config import ADVISORY_LOCK_KEY, CORE_TABLE_MIN_ROWS, DEFAULT_APP_ROLE, DEFAULT_SCHEMA, REQUIRED_FUNCTIONS, SMOKE_TEST_VIN
 from vpic_updater.core.db import DatabaseDSN, connect, with_dbname
 from vpic_updater.models.load import LoadError
 from vpic_updater.models.validation import ValidationResult
@@ -22,7 +22,7 @@ from vpic_updater.models.validation import ValidationResult
 logger = logging.getLogger("vpic_updater.load")
 
 
-# Step-1: Locking
+# --- Locking ----------------------------------------------------------------
 def acquire_lock(control_conn: PGConnection) -> bool:
     """Attempt to acquire the pipeline's advisory lock on the control
     connection. Non-blocking -- returns False immediately if another
@@ -34,8 +34,7 @@ def acquire_lock(control_conn: PGConnection) -> bool:
         logger.info("Acquired advisory lock (key=%s)", ADVISORY_LOCK_KEY)
     else:
         logger.warning(
-            "Advisory lock already held by another process (key=%s) -- "
-            "an update is already in progress",
+            "Advisory lock already held by another process (key=%s)",
             ADVISORY_LOCK_KEY,
         )
     return acquired
@@ -56,7 +55,7 @@ def release_lock(control_conn: PGConnection) -> None:
         )
 
 
-# Step-2: Create database + restore
+# --- Create + Restore ---------------------------------------------------------
 def db_name_for(year_month: str) -> str:
     """e.g. '2026_08' -> 'vpic_2026_08', matching the ops team's existing
     naming convention from the manual runbook."""
@@ -75,8 +74,7 @@ def create_database(target_admin_dsn: DatabaseDSN, db_name: str) -> None:
             if cur.fetchone():
                 raise LoadError(
                     f"Database '{db_name}' already exists -- refusing to "
-                    f"overwrite. Investigate before retrying (a prior run "
-                    f"may have failed partway through)."
+                    f"overwrite. Investigate before retrying."
                 )
             cur.execute(f'CREATE DATABASE "{db_name}"')
         logger.info("Created database: %s", db_name)
@@ -139,7 +137,7 @@ def restore_dump(
 
     logger.info("pg_restore completed successfully for %s", db_name)
 
-# Step-3: Validate + grant access
+# --- Validation ---------------------------------------------------------------
 def validate_database(
     target_admin_dsn: DatabaseDSN,
     db_name: str,
@@ -251,7 +249,39 @@ def _run_decode_smoke_test(conn: PGConnection, schema: str, db_name: str) -> boo
 
     return True
 
-# Step-4: Promotion + history
+# --- Grant access ---------------------------------------------------------
+def grant_app_access(
+    target_admin_dsn: DatabaseDSN,
+    db_name: str,
+    app_role: str = DEFAULT_APP_ROLE,
+    schema: str = DEFAULT_SCHEMA,
+) -> None:
+    admin_conn = connect(target_admin_dsn, autocommit=True)
+    try:
+        with admin_conn.cursor() as cur:
+            cur.execute(
+                f'GRANT CONNECT, TEMPORARY ON DATABASE "{db_name}" TO {app_role}'
+            )
+    finally:
+        admin_conn.close()
+
+    scoped_dsn = with_dbname(target_admin_dsn, db_name)
+    conn = connect(scoped_dsn, autocommit=True)
+    try:
+        with conn.cursor() as cur:
+            cur.execute(f'GRANT USAGE ON SCHEMA "{schema}" TO {app_role}')
+            cur.execute(f'GRANT SELECT ON ALL TABLES IN SCHEMA "{schema}" TO {app_role}')
+            cur.execute(
+                f'ALTER DEFAULT PRIVILEGES IN SCHEMA "{schema}" '
+                f'GRANT SELECT ON TABLES TO {app_role}'
+            )
+    finally:
+        conn.close()
+
+    logger.info("Granted %s access to %s.%s", app_role, db_name, schema)
+
+
+# --- Promotion + history ---------------------------------------------------
 def promote(control_conn: PGConnection, db_name: str, version: str, released_on) -> None:
     """Point the application at the new database by updating the singleton
     row in current_deployment. This is the single moment at which
