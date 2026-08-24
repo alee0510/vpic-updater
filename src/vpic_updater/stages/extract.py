@@ -11,7 +11,8 @@ from pathlib import Path
 import requests
 
 from vpic_updater.core.config import DEFAULT_CHUNK_SIZE, DEFAULT_TIMEOUT_SECONDS, MIN_EXPECTED_ZIP_BYTES
-from vpic_updater.models.download import DownloadResult, ExtractError
+from vpic_updater.models.download import DownloadResult
+from vpic_updater.models.extract import ExtractError
 
 
 logger = logging.getLogger("vpic_updater.extract")

@@ -6,6 +6,10 @@ class TransformError(Exception):
     expected .backup dump file."""
 
 
+class ExtractError(Exception):
+    """Raised when download fails, is truncated, or is not a valid zip."""
+
+
 class ExtractedDump(BaseModel):
     dump_path: Path
     size_bytes: int
