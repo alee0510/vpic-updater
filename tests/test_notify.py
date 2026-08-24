@@ -8,7 +8,7 @@ import requests_mock
 
 from vpic_updater.stages.notify import send_slack_notification
 
-WEBHOOK_URL = os.getenv("SLACK_WEBHOOK_URL")
+WEBHOOK_URL = os.getenv("SLACK_WEBHOOK_URL", "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX")
 
 
 class TestSendSlackNotification:
