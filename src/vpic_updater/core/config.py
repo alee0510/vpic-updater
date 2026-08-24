@@ -57,3 +57,6 @@ REQUIRED_FUNCTIONS = ("spvindecode", "spvindecode_core")
 # against vPIC 4.08 -- decodes clean (Error Text: "0 - VIN decoded clean"),
 # returns 68 rows spanning General/Interior/Engine groups.
 SMOKE_TEST_VIN = "1FTEW1E4XKFC98434"
+
+# Slack Notification
+DEFAULT_SLACK_NOTIFICATION_TIMEOUT_SECONDS = 15
