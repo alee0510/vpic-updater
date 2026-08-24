@@ -1,0 +1,47 @@
+# Local development/test overrides. Run with:
+#
+#   docker compose -f docker-compose.yaml -f docker-compose.dev.yaml \
+#     up -d control-db target-db
+#
+#   docker compose -f docker-compose.yaml -f docker-compose.dev.yaml \
+#     run --rm updater
+#
+# Ports are still published to the host too, so you can also point a local
+# psql/DBeaver at localhost:5433 / localhost:5434 to inspect state directly.
+
+services:
+  control-db:
+    ports:
+      - "5433:5432"
+
+  target-db:
+    ports:
+      - "5434:5432"
+
+  updater:
+    build:
+      context: .
+      target: dev
+    environment:
+      TEST_CONTROL_PG_HOST: control-db
+      TEST_CONTROL_PG_PORT: "5432"
+      TEST_CONTROL_PG_USER: vpic_admin
+      TEST_CONTROL_PG_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      TEST_CONTROL_PG_DBNAME: vpic_meta
+      TEST_TARGET_PG_HOST: target-db
+      TEST_TARGET_PG_PORT: "5432"
+      TEST_TARGET_PG_USER: vpic_admin
+      TEST_TARGET_PG_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      TEST_TARGET_PG_DBNAME: postgres
+    command: ["pytest", "tests/test_load.py", "-v", "-m", "integration"]
+    volumes:
+      # Mount source/tests over what was COPY'd at build time, so you can
+      # edit locally and re-run without rebuilding the image each time.
+      - ./src:/app/src
+      - ./tests:/app/tests
+      - ./migrations:/app/migrations
+    depends_on:
+      control-db:
+        condition: service_healthy
+      target-db:
+        condition: service_healthy

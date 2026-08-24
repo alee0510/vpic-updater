@@ -12,3 +12,4 @@ wheels/
 
 # Test
 .pytest_cache
+.env
