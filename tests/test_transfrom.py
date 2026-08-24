@@ -5,7 +5,7 @@ from pathlib import Path
 import pytest
 
 from vpic_updater.core.config import MIN_EXPECTED_BACKUP_BYTES
-from vpic_updater.model.extract import TransformError
+from vpic_updater.models.extract import TransformError
 from vpic_updater.stages.transform import unzip_dump
 
 

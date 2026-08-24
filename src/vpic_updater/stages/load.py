@@ -14,10 +14,10 @@ import psycopg2
 from pathlib import Path
 from psycopg2.extensions import connection as PGConnection
 
-from vpic_updater.core.config import ADVISORY_LOCK_KEY, CORE_TABLE_MIN_ROWS, DEFAULT_APP_ROLE, DEFAULT_SCHEMA, DEFAULT_MIN_ROW_COUNT, REQUIRED_FUNCTIONS, SMOKE_TEST_VIN
+from vpic_updater.core.config import ADVISORY_LOCK_KEY, CORE_TABLE_MIN_ROWS, DEFAULT_SCHEMA, REQUIRED_FUNCTIONS, SMOKE_TEST_VIN
 from vpic_updater.core.db import DatabaseDSN, connect, with_dbname
-from vpic_updater.model.load import LoadError
-from vpic_updater.model.validation import ValidationResult
+from vpic_updater.models.load import LoadError
+from vpic_updater.models.validation import ValidationResult
 
 logger = logging.getLogger("vpic_updater.load")
 

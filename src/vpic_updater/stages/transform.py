@@ -12,7 +12,7 @@ import zipfile
 from pathlib import Path
 
 from vpic_updater.core.config import MIN_EXPECTED_BACKUP_BYTES
-from vpic_updater.model.extract import ExtractedDump, TransformError
+from vpic_updater.models.extract import ExtractedDump, TransformError
 
 
 logger = logging.getLogger("vpic_updater.transform")
