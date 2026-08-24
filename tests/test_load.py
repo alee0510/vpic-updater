@@ -13,7 +13,7 @@ from pathlib import Path
 
 import pytest
 
-from vpic_updater.core.config import CORE_TABLE_MIN_ROWS
+from vpic_updater.core.constants import CORE_TABLE_MIN_ROWS
 from vpic_updater.core.db import DatabaseDSN, connect, with_dbname
 from vpic_updater.stages.load import (
     LoadError,

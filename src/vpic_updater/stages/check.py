@@ -12,7 +12,7 @@ from datetime import date
 import requests
 from bs4 import BeautifulSoup
 
-from vpic_updater.core.config import VPIC_BASE_URL, VPIC_DOWNLOADS_URL
+from vpic_updater.core.constants import VPIC_BASE_URL, VPIC_DOWNLOADS_URL
 from vpic_updater.models.version import VpicVersion, VersionCheckError
 
 logger = logging.getLogger("vpic_updater.check")

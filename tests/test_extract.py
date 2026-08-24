@@ -7,7 +7,7 @@ import pytest
 import requests
 import requests_mock
 
-from vpic_updater.core.config import MIN_EXPECTED_ZIP_BYTES
+from vpic_updater.core.constants import MIN_EXPECTED_ZIP_BYTES
 from vpic_updater.models.extract import ExtractError
 from vpic_updater.stages.extract import download_file
 

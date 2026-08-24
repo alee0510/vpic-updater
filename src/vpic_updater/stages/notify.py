@@ -14,7 +14,7 @@ from datetime import date
 
 import requests
 
-from vpic_updater.core.config import DEFAULT_SLACK_NOTIFICATION_TIMEOUT_SECONDS
+from vpic_updater.core.constants import DEFAULT_SLACK_NOTIFICATION_TIMEOUT_SECONDS
 from vpic_updater.models.notification import NotificationResult
 
 logger = logging.getLogger("vpic_updater.notify")

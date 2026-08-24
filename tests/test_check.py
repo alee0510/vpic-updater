@@ -7,7 +7,7 @@ import pytest
 import requests
 import requests_mock
 
-from vpic_updater.core.config import VPIC_DOWNLOADS_URL
+from vpic_updater.core.constants import VPIC_DOWNLOADS_URL
 from vpic_updater.models.version import VersionCheckError, VpicVersion
 from vpic_updater.stages.check import fetch_current_version, is_new_version
 
