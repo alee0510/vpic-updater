@@ -9,13 +9,15 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /bin/
 
 WORKDIR /app
 ENV UV_PROJECT_ENVIRONMENT=/app/.venv \
-    PATH="/app/.venv/bin:$PATH"
+    PATH="/app/.venv/bin:$PATH" \
+    UV_PYTHON_PREFERENCE=only-system \
+    UV_PYTHON_DOWNLOADS=never
 
-COPY pyproject.toml uv.lock ./
+COPY pyproject.toml uv.lock .python-version ./
 
 
 # ---------------------------------------------------------------------------
-# prod: lean runtime image, no test tooling. Used by docker-compose.yaml.
+# prod: lean runtime image, no dev dependency-group. Used by docker-compose.yaml.
 # ---------------------------------------------------------------------------
 FROM base AS prod
 RUN uv sync --frozen --no-dev
@@ -26,13 +28,14 @@ CMD ["vpic-update"]
 
 
 # ---------------------------------------------------------------------------
-# dev: adds pytest/ruff/requests-mock for local testing. Used by
-# docker-compose.dev.yaml. Not used in any deployed environment.
+# dev: adds the "dev" dependency-group (pytest/ruff/requests-mock) for
+# local testing. Used by docker-compose.dev.yaml. Not used in any deployed
+# environment.
 # ---------------------------------------------------------------------------
 FROM base AS dev
-RUN uv sync --frozen --extra dev
+RUN uv sync --frozen --group dev
 COPY src/ ./src/
 COPY tests/ ./tests/
 COPY migrations/ ./migrations/
-RUN uv sync --frozen --extra dev
+RUN uv sync --frozen --group dev
 CMD ["pytest", "-v"]
