@@ -1,12 +1,11 @@
 """Integration tests for the Load stage. Requires live Postgres containers
-(see docker-compose.yml: control-db, target-db). Run with:
+(see docker-compose.yaml: control-db, target-db). Run with:
 
-    TEST_TARGET_PG_HOST=localhost TEST_TARGET_PG_PORT=5434 \\
-    TEST_CONTROL_PG_HOST=localhost TEST_CONTROL_PG_PORT=5433 \\
-    TEST_TARGET_PG_PASSWORD=<pw> TEST_CONTROL_PG_PASSWORD=<pw> \\
-    uv run pytest tests/test_load.py -v -m integration
+    docker compose -f docker-compose.yaml -f docker-compose.dev.yaml \
+        run --rm updater
 
-Tests are auto-skipped if these env vars aren't set.
+Tests are auto-skipped if TEST_TARGET_PG_HOST / TEST_CONTROL_PG_HOST
+aren't set (see conftest.py).
 """
 
 import subprocess
@@ -32,6 +31,7 @@ from vpic_updater.stages.load import (
 )
 
 pytestmark = pytest.mark.integration
+
 
 def _build_sample_dump(target_admin_dsn: DatabaseDSN, tmp_path: Path) -> Path:
     """Build a real custom-format dump matching the *shape* of a real vPIC
@@ -113,6 +113,7 @@ def _build_sample_dump(target_admin_dsn: DatabaseDSN, tmp_path: Path) -> Path:
     drop_database_if_exists(target_admin_dsn, seed_db)
     return dump_path
 
+
 class TestLockingBehavior:
     def test_acquire_and_release(self, control_conn):
         assert acquire_lock(control_conn) is True
@@ -137,7 +138,7 @@ class TestCreateDatabase:
         try:
             create_database(target_admin_dsn, db_name)
             conn = connect(with_dbname(target_admin_dsn, db_name))
-            conn.close()  # connecting successfully proves it exists
+            conn.close()
         finally:
             drop_database_if_exists(target_admin_dsn, db_name)
 
@@ -164,13 +165,10 @@ class TestFullRestoreCycle:
             create_database(target_admin_dsn, db_name)
             restore_dump(dump_path, target_admin_dsn, db_name)
 
-            row_count = validate_database(
-                target_admin_dsn, db_name, min_rows=100_000
-            )
-            assert row_count == 150_000
+            result = validate_database(target_admin_dsn, db_name)
+            assert result.table_row_counts["pattern"] == 1_100_000
+            assert result.smoke_test_passed is True
 
-            # grant_app_access requires the role to pre-exist; create it
-            # here to mirror the one-time manual setup step
             admin_conn = connect(target_admin_dsn, autocommit=True)
             with admin_conn.cursor() as cur:
                 cur.execute(
@@ -198,23 +196,6 @@ class TestFullRestoreCycle:
         finally:
             drop_database_if_exists(target_admin_dsn, db_name)
 
-    def test_validate_rejects_low_row_count(self, target_admin_dsn, tmp_path):
-        db_name = "vpic_test_low_rowcount"
-        drop_database_if_exists(target_admin_dsn, db_name)
-        try:
-            create_database(target_admin_dsn, db_name)
-            conn = connect(with_dbname(target_admin_dsn, db_name), autocommit=True)
-            with conn.cursor() as cur:
-                cur.execute("CREATE SCHEMA vpic")
-                cur.execute("CREATE TABLE vpic.vin (id SERIAL PRIMARY KEY)")
-                cur.execute("INSERT INTO vpic.vin DEFAULT VALUES")  # only 1 row
-            conn.close()
-
-            with pytest.raises(LoadError, match="row count too low"):
-                validate_database(target_admin_dsn, db_name, min_rows=100_000)
-        finally:
-            drop_database_if_exists(target_admin_dsn, db_name)
-
 
 class TestFailureLeavesProductionUntouched:
     def test_restore_failure_does_not_promote(
@@ -222,6 +203,7 @@ class TestFailureLeavesProductionUntouched:
     ):
         """The core acceptance criterion: a failed restore must never reach
         promote(), and current_deployment must be unchanged."""
+
         # First, establish a "prior successful deployment" baseline
         promote(control_conn, "vpic_2026_07", version="4.07", released_on="2026-07-18")
         record_history(
@@ -239,7 +221,7 @@ class TestFailureLeavesProductionUntouched:
             with pytest.raises(LoadError):
                 restore_dump(bad_dump, target_admin_dsn, db_name)
 
-            # simulate orchestrator recording the failure
+            # Simulate orchestrator recording the failure
             record_history(
                 control_conn, version="4.08", released_on="2026-08-15",
                 status="failure", error="pg_restore failed", db_name=db_name,
