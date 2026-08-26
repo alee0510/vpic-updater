@@ -170,8 +170,8 @@ def run_update_check(settings: Settings) -> None:
 
 
 def main() -> None:
-    configure_logging()
     settings = get_settings()
+    configure_logging(log_dir=settings.log_dir)
     run_update_check(settings)
 
 

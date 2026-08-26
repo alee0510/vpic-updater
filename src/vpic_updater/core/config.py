@@ -40,6 +40,7 @@ class Settings(BaseSettings):
     # --- local working directories ---
     download_dir: Path = Field(default=Path("data/downloads"))
     extract_dir: Path = Field(default=Path("data/extracted"))
+    log_dir: Path = Field(default=Path("logs"))
 
     @property
     def control_dsn(self) -> DatabaseDSN:
