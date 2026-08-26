@@ -131,12 +131,34 @@ def run_update_check(settings: Settings) -> None:
                 status="failure",
                 detail=f"Update failed, production database unchanged. Error: {exc}",
             )
-            # Note: current_deployment is untouched because promote() was
-            # never reached. The partially-created db_name (if it exists)
-            # is deliberately left in place rather than auto-dropped, for
-            # post-incident inspection -- see create_database()'s
-            # "refuse to overwrite" behavior for the corresponding retry
-            # safeguard.
+
+            # current_deployment is untouched here because promote() was
+            # never reached -- that's the actual safety guarantee.
+            #
+            # DEFAULT BEHAVIOR: a partially-created db_name (if create_database
+            # got that far) is deliberately LEFT IN PLACE, not dropped. This
+            # gives you a forensic artifact to inspect after a failed run
+            # (partial restore state, whatever got as far as landing before
+            # the failure) instead of silently erasing evidence of what went
+            # wrong. It also means a re-run against the same version will
+            # correctly refuse via create_database()'s "already exists" guard
+            # rather than clobbering something that might still be useful.
+            #
+            # If this ever becomes undesirable (e.g. disk pressure from
+            # repeated failed attempts, or you'd rather auto-retry cleanly),
+            # uncomment the block below to auto-drop on failure instead:
+            #
+            # try:
+            #     drop_database_if_exists(settings.target_admin_dsn, db_name)
+            #     logger.info("Auto-dropped failed partial database: %s", db_name)
+            # except Exception as drop_exc:
+            #     logger.warning(
+            #         "Could not auto-drop failed database %s: %s", db_name, drop_exc
+            #     )
+            #
+            # Note: if you enable this, do it in its own try/except (as
+            # shown) so a drop failure never masks or replaces the original
+            # LoadError/ExtractError/TransformError being handled here.
 
     finally:
         if zip_path is not None:
