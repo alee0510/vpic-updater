@@ -1,0 +1,53 @@
+services:
+  control-db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: vpic_meta
+      POSTGRES_USER: vpic_admin
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - control_pgdata:/var/lib/postgresql/data
+      - ./migrations/001_init_vpic_meta.sql:/docker-entrypoint-initdb.d/001_init_vpic_meta.sql:ro
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vpic_admin -d vpic_meta"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  target-db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: vpic_admin
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - target_pgdata:/var/lib/postgresql/data
+      - ./migrations/002_init_target_db_role.sql:/docker-entrypoint-initdb.d/002_init_target_db_role.sql:ro
+    ports:
+      - "5434:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vpic_admin"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  updater:
+    build:
+      context: .
+      target: prod
+    depends_on:
+      control-db:
+        condition: service_healthy
+      target-db:
+        condition: service_healthy
+    env_file: .env
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    command: ["cron", "-f"]
+
+volumes:
+  control_pgdata:
+  target_pgdata:

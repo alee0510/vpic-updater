@@ -1,0 +1,29 @@
+# Virtual envs / caches
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.ruff_cache/
+
+# Version control
+.git/
+.gitignore
+
+# Secrets / local env
+.env
+.env.*
+!.env.example
+
+# Runtime artifacts (created by the pipeline itself)
+data/
+logs/
+
+# Large/generated files that should never be baked into an image
+*.zip
+*.backup
+*.sql
+!migrations/*.sql
+
+# Misc
+.DS_Store
