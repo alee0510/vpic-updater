@@ -4,9 +4,10 @@ services:
     environment:
       POSTGRES_DB: vpic_meta
       POSTGRES_USER: vpic_admin
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - control_pgdata:/var/lib/postgresql/data
+      - ./migrations/001_init_vpic_meta.sql:/docker-entrypoint-initdb.d/001_init_vpic_meta.sql:ro
     ports:
       - "5433:5432"
     healthcheck:
@@ -20,9 +21,10 @@ services:
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: vpic_admin
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - target_pgdata:/var/lib/postgresql/data
+      - ./migrations/002_init_target_db_role.sql:/docker-entrypoint-initdb.d/002_init_target_db_role.sql:ro
     ports:
       - "5434:5432"
     healthcheck:
