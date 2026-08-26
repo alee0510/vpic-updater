@@ -20,7 +20,7 @@ import logging
 
 from vpic_updater.core.config import Settings, get_settings
 from vpic_updater.core.db import connect
-from vpic_updater.core.logging_conf import configure_logging
+from vpic_updater.core.logging_conf import configure_logging, new_run_id
 
 from vpic_updater.models.extract import ExtractError
 from vpic_updater.models.load import LoadError
@@ -49,6 +49,9 @@ logger = logging.getLogger("vpic_updater.orchestrator")
 
 
 def run_update_check(settings: Settings) -> None:
+    run_id = new_run_id()
+    logger.info("Starting update check (run_id=%s)", run_id)
+
     control_conn = connect(settings.control_dsn)
 
     if not acquire_lock(control_conn):
