@@ -1,37 +1,59 @@
+networks:
+  vpic_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/24
+
+volumes:
+  control_pgdata:
+  target_pgdata:
+
 services:
   control-db:
     image: postgres:17
     environment:
       POSTGRES_DB: vpic_meta
       POSTGRES_USER: vpic_admin
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_PASSWORD: ${CONTROL_DB_PASSWORD}
     volumes:
       - control_pgdata:/var/lib/postgresql/data
-      - ./migrations/001_init_vpic_meta.sql:/docker-entrypoint-initdb.d/001_init_vpic_meta.sql:ro
+      - ./migrations/001_init_vpic_meta.sql:/docker-entrypoint-initdb.d/10-init-vpic-meta.sql:ro
+      - ./docker/postgres/pg_hba.conf.template:/docker-entrypoint-initdb.d/pg_hba.conf.template:ro
+      - ./docker/postgres/set-hba.sh:/docker-entrypoint-initdb.d/20-set-hba.sh:ro
+    networks:
+      - vpic_net
     ports:
-      - "5433:5432"
+      - "127.0.0.1:5433:5432"   # loopback only -- reach via SSH tunnel, never public
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U vpic_admin -d vpic_meta"]
       interval: 5s
       timeout: 5s
       retries: 10
+    restart: unless-stopped
 
   target-db:
     image: postgres:17
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: vpic_admin
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_PASSWORD: ${TARGET_DB_PASSWORD}
+      VPIC_USER_PASSWORD: ${VPIC_USER_PASSWORD}
     volumes:
       - target_pgdata:/var/lib/postgresql/data
-      - ./migrations/002_init_target_db_role.sql:/docker-entrypoint-initdb.d/002_init_target_db_role.sql:ro
+      - ./docker/postgres/set-app-role.sh:/docker-entrypoint-initdb.d/10-set-app-role.sh:ro
+      - ./docker/postgres/pg_hba.conf.template:/docker-entrypoint-initdb.d/pg_hba.conf.template:ro
+      - ./docker/postgres/set-hba.sh:/docker-entrypoint-initdb.d/20-set-hba.sh:ro
+    networks:
+      - vpic_net
     ports:
-      - "5434:5432"
+      - "127.0.0.1:5434:5432"   # loopback only
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U vpic_admin"]
       interval: 5s
       timeout: 5s
       retries: 10
+    restart: unless-stopped
 
   updater:
     build:
@@ -43,11 +65,9 @@ services:
       target-db:
         condition: service_healthy
     env_file: .env
+    networks:
+      - vpic_net
     volumes:
       - ./data:/app/data
       - ./logs:/app/logs
-    command: ["cron", "-f"]
-
-volumes:
-  control_pgdata:
-  target_pgdata:
+    restart: unless-stopped

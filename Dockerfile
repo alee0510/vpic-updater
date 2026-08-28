@@ -26,8 +26,10 @@ FROM base AS prod
 RUN uv sync --frozen --no-dev
 COPY src/ ./src/
 COPY migrations/ ./migrations/
+COPY docker/ ./docker/
 RUN uv sync --frozen --no-dev
-CMD ["vpic-update"]
+RUN chmod +x /app/docker/entrypoint.sh
+ENTRYPOINT ["/app/docker/entrypoint.sh"]
 
 
 # ---------------------------------------------------------------------------
