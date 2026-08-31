@@ -1,0 +1,8 @@
+# docker-compose.verify.yaml
+# Local-only override to test the exact image that would be pushed/deployed,
+# against your existing local control-db/target-db, before pushing to the
+# registry. Not used in any real deployment.
+services:
+  updater:
+    image: ${REGISTRY}/vpic-updater:latest
+    build: !reset null   # explicitly disable build: from the base file, force image: to be used
