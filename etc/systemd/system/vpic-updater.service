@@ -1,0 +1,13 @@
+[Unit]
+Description=vpic-updater weekly check/deploy job
+After=docker.service
+Requires=docker.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/vpic-updater
+ExecStart=/usr/bin/docker compose -f docker-compose.prod.yaml run --rm updater vpic-update
+TimeoutStartSec=1800
+
+[Install]
+WantedBy=multi-user.target

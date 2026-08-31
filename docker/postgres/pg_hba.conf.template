@@ -1,0 +1,24 @@
+# Applied once, automatically, when each Postgres container's data volume
+# is first initialized (see docker/postgres/set-hba.sh). The __DOCKER_SUBNET__
+# placeholder below is substituted at init time from the DOCKER_SUBNET
+# environment variable (sourced from .env) -- this file has no hardcoded
+# subnet of its own, so it can never drift out of sync with
+# docker-compose.prod.yaml's network definition.
+#
+# NOTE: SSL/TLS is not configured on these containers -- these rules rely
+# on Docker's network isolation (private bridge subnet, no public port
+# exposure) rather than encryption-in-transit.
+
+local   all             all                                     peer
+
+host    vpic_meta       vpic_admin      __DOCKER_SUBNET__        scram-sha-256
+host    all             vpic_admin      __DOCKER_SUBNET__        scram-sha-256
+host    all             vpic_user       __DOCKER_SUBNET__        scram-sha-256
+
+# Loopback access -- lets you psql in via an SSH tunnel or directly on
+# the VPS itself (127.0.0.1:5433 / 127.0.0.1:5434) for manual inspection.
+host    all             all             127.0.0.1/32             scram-sha-256
+
+# Explicit deny-all fallback. Postgres already rejects unmatched
+# connections by default; this makes that intent unambiguous. Must be last.
+host    all             all             0.0.0.0/0                reject
