@@ -1,9 +1,0 @@
-# vpic-updater scheduled check -- runs weekly (Mondays 06:00 UTC), which
-# yields 4-5 checks/month; a 5th check in a 5-Monday month is a harmless
-# no-op if there's nothing new to deploy.
-#
-# Sources the captured container environment before running, since cron
-# does not inherit the environment the container was started with.
-0 6 * * 1 . /app/.cron_env && /app/.venv/bin/vpic-update >> /app/logs/cron.log 2>&1
-
-# Required trailing newline -- cron rejects crontabs without one.

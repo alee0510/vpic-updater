@@ -1,0 +1,10 @@
+[Unit]
+Description=Weekly trigger for vpic-updater.service
+
+[Timer]
+OnCalendar=Mon *-*-* 06:00:00
+Persistent=true
+RandomizedDelaySec=300
+
+[Install]
+WantedBy=timers.target
