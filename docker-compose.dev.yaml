@@ -26,12 +26,12 @@ services:
       TEST_CONTROL_PG_HOST: control-db
       TEST_CONTROL_PG_PORT: "5432"
       TEST_CONTROL_PG_USER: vpic_admin
-      TEST_CONTROL_PG_PASSWORD: ${POSTGRES_PASSWORD}
+      TEST_CONTROL_PG_PASSWORD: ${CONTROL_DB_PASSWORD}
       TEST_CONTROL_PG_DBNAME: vpic_meta
       TEST_TARGET_PG_HOST: target-db
       TEST_TARGET_PG_PORT: "5432"
       TEST_TARGET_PG_USER: vpic_admin
-      TEST_TARGET_PG_PASSWORD: ${POSTGRES_PASSWORD}
+      TEST_TARGET_PG_PASSWORD: ${TARGET_DB_PASSWORD}
       TEST_TARGET_PG_DBNAME: postgres
     command: ["pytest", "tests/test_load.py", "-v", "-m", "integration"]
     volumes:

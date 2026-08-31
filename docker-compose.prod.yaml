@@ -11,7 +11,8 @@ volumes:
 
 services:
   control-db:
-    image: postgres:17
+    build:
+      context: ./docker/postgres
     environment:
       POSTGRES_DB: vpic_meta
       POSTGRES_USER: vpic_admin
@@ -20,8 +21,6 @@ services:
     volumes:
       - control_pgdata:/var/lib/postgresql/data
       - ./migrations/001_init_vpic_meta.sql:/docker-entrypoint-initdb.d/10-init-vpic-meta.sql:ro
-      - ./docker/postgres/pg_hba.conf.template:/docker-entrypoint-initdb.d/pg_hba.conf.template:ro
-      - ./docker/postgres/set-hba.sh:/docker-entrypoint-initdb.d/20-set-hba.sh:ro
     networks:
       - vpic_net
     ports:
@@ -34,7 +33,8 @@ services:
     restart: unless-stopped
 
   target-db:
-    image: postgres:17
+    build:
+      context: ./docker/postgres
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: vpic_admin
@@ -43,9 +43,6 @@ services:
       DOCKER_SUBNET: ${DOCKER_SUBNET}
     volumes:
       - target_pgdata:/var/lib/postgresql/data
-      - ./docker/postgres/set-app-role.sh:/docker-entrypoint-initdb.d/10-set-app-role.sh:ro
-      - ./docker/postgres/pg_hba.conf.template:/docker-entrypoint-initdb.d/pg_hba.conf.template:ro
-      - ./docker/postgres/set-hba.sh:/docker-entrypoint-initdb.d/20-set-hba.sh:ro
     networks:
       - vpic_net
     ports:
