@@ -2,14 +2,14 @@
 # docker/scripts/check_subnet_collision.sh
 #
 # Checks whether DOCKER_SUBNET (from .env) numerically overlaps any
-# existing Docker network OR any subnet already routed on the host
-# (VPN interfaces, provider private networking, the existing native
-# Postgres host route, etc.). String-matching on the CIDR text is not
-# enough -- a /24 can sit entirely inside an existing /16 without ever
-# sharing an identical substring. Run this before `docker compose up`
-# on a fresh VPS, or any time DOCKER_SUBNET changes.
+# existing Docker network OR any subnet already routed on the host.
 
-set -euo pipefail
+set -uo pipefail
+# NOTE: -e deliberately omitted (or must be worked around explicitly, see
+# check_overlap below) -- with -e enabled, this script would silently
+# exit the moment it reached the first NON-colliding entry, since that
+# path's python3 helper intentionally returns a non-zero exit code, which
+# -e treats as a fatal error rather than "no match, keep checking."
 
 if [ -z "${DOCKER_SUBNET:-}" ]; then
     echo "ERROR: DOCKER_SUBNET not set. Export it or source .env first:" >&2
@@ -26,8 +26,13 @@ check_overlap() {
     local candidate="$1"
     local existing="$2"
     local label="$3"
+    local rc
 
-    python3 - "$candidate" "$existing" <<'PYEOF'
+    # Explicit if/else, not a bare statement followed by $? -- this is
+    # what actually protects the call from set -e (even though -e is off
+    # above, keeping this defensive means the function is also safe to
+    # reuse in a caller that does have -e enabled).
+    if python3 - "$candidate" "$existing" <<'PYEOF'
 import ipaddress
 import sys
 
@@ -36,15 +41,23 @@ try:
     c = ipaddress.ip_network(candidate, strict=False)
     e = ipaddress.ip_network(existing, strict=False)
 except ValueError:
-    sys.exit(2)  # unparsable -- treat as non-match, don't false-alarm
+    sys.exit(2)
 
 sys.exit(0 if c.overlaps(e) else 1)
 PYEOF
-    local rc=$?
+    then
+        rc=0
+    else
+        rc=$?
+    fi
+
     if [ "$rc" -eq 0 ]; then
         echo "  COLLISION: ${label} uses ${existing}, overlaps ${candidate}"
         collision_found=1
+    elif [ "$rc" -eq 2 ]; then
+        echo "  WARN: could not parse '${existing}' for ${label} -- skipped" >&2
     fi
+    # rc == 1 -> no overlap, nothing to print, this is the normal/expected case
 }
 
 echo "-- Existing Docker networks --"
