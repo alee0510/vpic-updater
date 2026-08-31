@@ -1,21 +1,19 @@
 # Applied once, automatically, when each Postgres container's data volume
-# is first initialized (see docker/postgres/set-hba.sh). This file is not
-# meant to be hand-edited on a running container — to change it, edit this
-# template and recreate the container against a fresh volume, matching the
-# "one-time, not per-version" design decision made earlier in this project.
+# is first initialized (see docker/postgres/set-hba.sh). The __DOCKER_SUBNET__
+# placeholder below is substituted at init time from the DOCKER_SUBNET
+# environment variable (sourced from .env) -- this file has no hardcoded
+# subnet of its own, so it can never drift out of sync with
+# docker-compose.prod.yaml's network definition.
 #
-# NOTE: SSL/TLS is not configured on these containers (out of scope for
-# this deployment) -- these rules rely on Docker's network isolation
-# (private bridge subnet, no public port exposure) rather than
-# encryption-in-transit. If that changes, switch `host` to `hostssl` here.
+# NOTE: SSL/TLS is not configured on these containers -- these rules rely
+# on Docker's network isolation (private bridge subnet, no public port
+# exposure) rather than encryption-in-transit.
 
 local   all             all                                     peer
 
-# vpic-updater automation -- restricted to the fixed Docker bridge subnet
-# used by this project's docker-compose network, never 0.0.0.0/0.
-host    vpic_meta       vpic_admin      172.28.0.0/24            scram-sha-256
-host    all             vpic_admin      172.28.0.0/24            scram-sha-256
-host    all             vpic_user       172.28.0.0/24            scram-sha-256
+host    vpic_meta       vpic_admin      __DOCKER_SUBNET__        scram-sha-256
+host    all             vpic_admin      __DOCKER_SUBNET__        scram-sha-256
+host    all             vpic_user       __DOCKER_SUBNET__        scram-sha-256
 
 # Loopback access -- lets you psql in via an SSH tunnel or directly on
 # the VPS itself (127.0.0.1:5433 / 127.0.0.1:5434) for manual inspection.

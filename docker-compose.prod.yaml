@@ -3,7 +3,7 @@ networks:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.28.0.0/24
+        - subnet: ${DOCKER_SUBNET}
 
 volumes:
   control_pgdata:
@@ -16,6 +16,7 @@ services:
       POSTGRES_DB: vpic_meta
       POSTGRES_USER: vpic_admin
       POSTGRES_PASSWORD: ${CONTROL_DB_PASSWORD}
+      DOCKER_SUBNET: ${DOCKER_SUBNET}
     volumes:
       - control_pgdata:/var/lib/postgresql/data
       - ./migrations/001_init_vpic_meta.sql:/docker-entrypoint-initdb.d/10-init-vpic-meta.sql:ro
@@ -39,6 +40,7 @@ services:
       POSTGRES_USER: vpic_admin
       POSTGRES_PASSWORD: ${TARGET_DB_PASSWORD}
       VPIC_USER_PASSWORD: ${VPIC_USER_PASSWORD}
+      DOCKER_SUBNET: ${DOCKER_SUBNET}
     volumes:
       - target_pgdata:/var/lib/postgresql/data
       - ./docker/postgres/set-app-role.sh:/docker-entrypoint-initdb.d/10-set-app-role.sh:ro
