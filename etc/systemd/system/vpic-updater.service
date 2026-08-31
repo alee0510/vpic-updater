@@ -8,6 +8,8 @@ Type=oneshot
 WorkingDirectory=/opt/vpic-updater
 ExecStart=/usr/bin/docker compose -f docker-compose.prod.yaml run --rm updater vpic-update
 TimeoutStartSec=1800
+TimeoutStopSec=30
+KillMode=mixed
 
 [Install]
 WantedBy=multi-user.target
