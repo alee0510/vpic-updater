@@ -78,8 +78,15 @@ def run_update_check(settings: Settings) -> None:
 
         last_version = get_last_deployed_version(control_conn)
         if not is_new_version(remote, last_version):
+            send_slack_notification(
+                settings.slack_webhook_url,
+                version="unknown",
+                released_on="unknown",
+                status="info",
+                detail=f"No new version of vPIC is available for deployment (current={remote.version}, last deployed={last_version}).",
+            )
             logger.info(
-                "No new version (current=%s, last deployed=%s)",
+                "No new version of vPIC is available for deployment (current=%s, last deployed=%s)",
                 remote.version, last_version,
             )
             return

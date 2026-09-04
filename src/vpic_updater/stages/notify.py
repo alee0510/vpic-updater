@@ -22,6 +22,7 @@ logger = logging.getLogger("vpic_updater.notify")
 _STATUS_COLORS = {
     "success": "#36a64f",
     "failure": "#d00000",
+    "info": "#438dd5",
 }
 
 
