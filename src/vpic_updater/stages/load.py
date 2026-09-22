@@ -29,7 +29,10 @@ def acquire_lock(control_conn: PGConnection) -> bool:
     process already holds it, rather than queuing."""
     with control_conn.cursor() as cur:
         cur.execute("SELECT pg_try_advisory_lock(%s)", (ADVISORY_LOCK_KEY,))
-        acquired = cur.fetchone()[0]
+        row = cur.fetchone()
+        if row is None:
+            raise LoadError("pg_try_advisory_lock returned no row")
+        acquired = row[0]
     if acquired:
         logger.info("Acquired advisory lock (key=%s)", ADVISORY_LOCK_KEY)
     else:
@@ -45,7 +48,10 @@ def release_lock(control_conn: PGConnection) -> None:
     held by this connection (returns False internally, we just log it)."""
     with control_conn.cursor() as cur:
         cur.execute("SELECT pg_advisory_unlock(%s)", (ADVISORY_LOCK_KEY,))
-        released = cur.fetchone()[0]
+        row = cur.fetchone()
+        if row is None:
+            raise LoadError("pg_advisory_unlock returned no row")
+        released = row[0]
     if released:
         logger.info("Released advisory lock (key=%s)", ADVISORY_LOCK_KEY)
     else:
@@ -196,7 +202,12 @@ def _check_core_tables(
                 )
 
             cur.execute(f'SELECT count(*) FROM "{schema}"."{table}"')
-            count = cur.fetchone()[0]
+            row = cur.fetchone()
+            if row is None:
+                raise LoadError(
+                    f"{db_name}: count query for {schema}.{table} returned no row"
+                )
+            count = row[0]
             if count < floor:
                 raise LoadError(
                     f"{db_name}: {schema}.{table} row count too low "
@@ -233,7 +244,12 @@ def _run_decode_smoke_test(conn: PGConnection, schema: str, db_name: str) -> boo
                 f'SELECT count(*) FROM "{schema}".spvindecode(%s)',
                 (SMOKE_TEST_VIN,),
             )
-            result_count = cur.fetchone()[0]
+            row = cur.fetchone()
+            if row is None:
+                raise LoadError(
+                    f"{db_name}: VIN decode smoke test query returned no row"
+                )
+            result_count = row[0]
     except psycopg2.Error as exc:
         raise LoadError(
             f"{db_name}: VIN decode smoke test raised an error calling "
