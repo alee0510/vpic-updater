@@ -24,7 +24,7 @@ services:
     networks:
       - vpic_net
     ports:
-      - "127.0.0.1:5433:5432"
+      - "0.0.0.0:5433:5432"   # public -- open to all external requests
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U vpic_admin -d vpic_meta"]
       interval: 5s
@@ -46,7 +46,7 @@ services:
     networks:
       - vpic_net
     ports:
-      - "127.0.0.1:5434:5432"
+      - "0.0.0.0:5434:5432"   # public -- open to all external requests
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U vpic_admin"]
       interval: 5s

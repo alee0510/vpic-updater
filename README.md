@@ -261,9 +261,14 @@ chmod 600 .env
 
 ## Step 6 — Firewall confirmation
 
+control-db and target-db are published on `0.0.0.0` (open to all external
+requests), not loopback-only. Traffic is unencrypted after authentication
+(no TLS) and `pg_hba.conf` allows `0.0.0.0/0`. Confirm the ports are
+actually reachable as intended:
+
 ```bash
 sudo ufw status
-sudo ss -tlnp | grep -E '5433|5434'   # should show 127.0.0.1:xxxx, never 0.0.0.0
+sudo ss -tlnp | grep -E '5433|5434'   # should show 0.0.0.0:xxxx
 ```
 
 ## Step 7 — Build and push the image (on your local machine, not the VPS)
