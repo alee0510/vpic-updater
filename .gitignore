@@ -5,6 +5,7 @@ build/
 dist/
 logs/
 data/
+.docs
 wheels/
 *.egg-info
 .DS_Store
