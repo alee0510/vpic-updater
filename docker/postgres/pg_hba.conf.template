@@ -9,24 +9,24 @@
 # (private bridge subnet, no public port exposure) used to be the only
 # thing standing between these rules and the open internet -- as of the
 # rule below, that is no longer true: ports 15433/15434 are published on
-# 0.0.0.0, and password authentication (scram-sha-256) does not encrypt
+# 0.0.0.0, and password authentication (md5) does not encrypt
 # the session traffic that follows it. Every query and row of data sent
 # over an external connection travels in the clear.
 
 local   all             all                                     peer
 
-host    vpic_meta       vpic_admin      __DOCKER_SUBNET__        scram-sha-256
-host    all             vpic_admin      __DOCKER_SUBNET__        scram-sha-256
-host    all             vpic_user       __DOCKER_SUBNET__        scram-sha-256
+host    vpic_meta       vpic_admin      __DOCKER_SUBNET__        md5
+host    all             vpic_admin      __DOCKER_SUBNET__        md5
+host    all             vpic_user       __DOCKER_SUBNET__        md5
 
 # Loopback access -- lets you psql in via an SSH tunnel or directly on
 # the VPS itself (127.0.0.1:15433 / 127.0.0.1:15434) for manual inspection.
-host    all             all             127.0.0.1/32             scram-sha-256
+host    all             all             127.0.0.1/32             md5
 
 # Open to all external requests, per explicit request -- accepts any
 # source IP on the internet. Must come before the (now unreachable)
 # deny-all below.
-host    all             all             0.0.0.0/0                scram-sha-256
+host    all             all             0.0.0.0/0                md5
 
 # Unreachable now that the rule above matches everything first; left in
 # place as a marker of the original deny-all-by-default intent.
