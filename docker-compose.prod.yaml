@@ -13,6 +13,9 @@ services:
   control-db:
     build:
       context: ./docker/postgres
+    # md5 (not the PG17 default scram-sha-256) for clients that cannot do
+    # SCRAM. Applies to passwords set at init time and afterwards.
+    command: ["postgres", "-c", "password_encryption=md5"]
     environment:
       POSTGRES_DB: vpic_meta
       POSTGRES_USER: vpic_admin
@@ -35,6 +38,9 @@ services:
   target-db:
     build:
       context: ./docker/postgres
+    # md5 (not the PG17 default scram-sha-256) for clients that cannot do
+    # SCRAM. Applies to passwords set at init time and afterwards.
+    command: ["postgres", "-c", "password_encryption=md5"]
     environment:
       POSTGRES_DB: postgres
       POSTGRES_USER: vpic_admin

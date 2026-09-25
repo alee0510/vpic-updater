@@ -104,6 +104,7 @@ Database roles and permissions are initialized automatically:
    - Builds custom PostgreSQL images for `control-db` and `target-db`.
    - [docker/postgres/set-app-role.sh](file:///docker/postgres/set-app-role.sh): Creates application role `vpic_user` with `VPIC_USER_PASSWORD` on `target-db` initialization. Supersedes `migrations/002_init_target_db_role.sql`.
    - [docker/postgres/set-hba.sh](file:///docker/postgres/set-hba.sh): Renders `pg_hba.conf` from template using `DOCKER_SUBNET` for network-level security.
+   - Password authentication is `md5` (not the PostgreSQL 17 default `scram-sha-256`): `pg_hba.conf.template` uses `md5` on every `host` line, and `docker-compose.prod.yaml` starts both databases with `password_encryption=md5`. Both only take effect on a fresh data volume -- see [Migrating existing volumes to md5](#migrating-existing-volumes-to-md5).
 
 ---
 
@@ -318,6 +319,35 @@ docker compose -f docker-compose.prod.yaml ps   # both "healthy" after ~10-15s
 ```bash
 # pg_hba.conf check
 docker compose -f docker-compose.prod.yaml exec target-db cat /var/lib/postgresql/data/pg_hba.conf
+```
+
+### Migrating existing volumes to md5
+
+`pg_hba.conf` and stored password hashes are written once, when a data
+volume is first initialized. On volumes created before the switch to md5,
+rebuilding the image is not enough -- run this once per database (never
+`docker compose down -v`, which deletes `vpic_meta` and every release db):
+
+```bash
+DC="docker compose -f docker-compose.prod.yaml"
+$DC up -d --build control-db target-db
+
+# target-db (repeat with control-db / -d vpic_meta / CONTROL_DB_PASSWORD)
+$DC exec -u postgres target-db cp /var/lib/postgresql/data/pg_hba.conf /var/lib/postgresql/data/pg_hba.conf.bak
+$DC exec -u postgres target-db sed -i '/^host/ s/scram-sha-256/md5/' /var/lib/postgresql/data/pg_hba.conf
+$DC exec target-db psql -h 127.0.0.1 -U vpic_admin -d postgres
+```
+
+Inside psql, re-set each password to its existing `.env` value so it is
+re-hashed as md5 (control-db only has `vpic_admin`):
+
+```
+SHOW password_encryption;   -- md5
+\password vpic_admin
+\password vpic_user
+SELECT rolname, left(rolpassword, 6) FROM pg_authid WHERE rolpassword IS NOT NULL;   -- all md5...
+SELECT pg_reload_conf();
+SELECT line_number, database, user_name, address, auth_method, error FROM pg_hba_file_rules;
 ```
 
 ```bash
