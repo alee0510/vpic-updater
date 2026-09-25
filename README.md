@@ -31,12 +31,12 @@ The `vpic-updater` service automates the retrieval and ingestion of official NHT
 ### Database Split
 The system utilizes a two-database architecture:
 1. **Control Database (`control-db` / `vpic_meta`)**:
-   - Runs on port `5433` by default.
+   - Runs on port `5433` by default (published as `15433` in production).
    - Holds `current_deployment` (singleton table containing active `db_name`, `version`, `released_on`, `promoted_at`).
    - Holds `update_history` (audit log of every execution attempt).
    - Manages single-job execution via `pg_advisory_lock(78123456)`.
 2. **Target Database Server (`target-db`)**:
-   - Runs on port `5434` by default.
+   - Runs on port `5434` by default (published as `15434` in production).
    - Hosts per-release databases (`vpic_YYYY_MM`).
    - Automated `vpic_user` role creation via [docker/postgres/set-app-role.sh](file:///docker/postgres/set-app-role.sh) on database initialization.
    - Grants read-only permissions (`SELECT`, `USAGE`, default privileges) to application role `vpic_user` on promoted release databases.
@@ -268,7 +268,7 @@ actually reachable as intended:
 
 ```bash
 sudo ufw status
-sudo ss -tlnp | grep -E '5433|5434'   # should show 0.0.0.0:xxxx
+sudo ss -tlnp | grep -E '15433|15434' # should show 0.0.0.0:xxxx
 ```
 
 ## Step 7 — Build and push the image (on your local machine, not the VPS)

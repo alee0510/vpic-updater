@@ -8,7 +8,7 @@
 # NOTE: SSL/TLS is not configured on these containers. Network isolation
 # (private bridge subnet, no public port exposure) used to be the only
 # thing standing between these rules and the open internet -- as of the
-# rule below, that is no longer true: ports 5433/5434 are published on
+# rule below, that is no longer true: ports 15433/15434 are published on
 # 0.0.0.0, and password authentication (scram-sha-256) does not encrypt
 # the session traffic that follows it. Every query and row of data sent
 # over an external connection travels in the clear.
@@ -20,7 +20,7 @@ host    all             vpic_admin      __DOCKER_SUBNET__        scram-sha-256
 host    all             vpic_user       __DOCKER_SUBNET__        scram-sha-256
 
 # Loopback access -- lets you psql in via an SSH tunnel or directly on
-# the VPS itself (127.0.0.1:5433 / 127.0.0.1:5434) for manual inspection.
+# the VPS itself (127.0.0.1:15433 / 127.0.0.1:15434) for manual inspection.
 host    all             all             127.0.0.1/32             scram-sha-256
 
 # Open to all external requests, per explicit request -- accepts any
